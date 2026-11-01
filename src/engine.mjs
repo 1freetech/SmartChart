@@ -123,7 +123,7 @@ const goalFamilies = {
   flow: ["Flows"], operations: ["Operations"], geography: ["Geography"]
 };
 
-export function recommendCharts(columns, rows, catalog, goal = "auto") {
+export function evaluateChartCandidates(columns, rows, catalog, goal = "auto") {
   if (!Array.isArray(columns) || !columns.length || !Array.isArray(catalog)) return [];
   const num = columns.filter(c => c.type === "number");
   const cats = columns.filter(c => c.type === "category");
@@ -145,14 +145,14 @@ export function recommendCharts(columns, rows, catalog, goal = "auto") {
       case "spark": return dates.length && num.length ? 61 : 0;
       case "slope": return cats.length && num.length >= 2 ? 79 : 0;
       case "bump": return dates.length && cats.length && num.length ? 63 : 0;
-      case "bars": return labels.length && num.length ? (dates.length && !cats.length ? 64 : 92) : 0;
-      case "groupedBars": return labels.length && num.length >= 2 ? 86 : 0;
-      case "stackedBars": return labels.length && num.length >= 2 && allNonnegative ? 85 : 0;
-      case "percentBars": return labels.length && num.length >= 2 && allNonnegative ? 79 : 0;
-      case "lollipop": return cats.length && num.length ? 74 : 0;
-      case "dumbbell": return cats.length && num.length >= 2 ? 82 : 0;
+      case "bars": return labels.length && num.length ? (dates.length && !cats.length ? 48 : 84) : 0;
+      case "groupedBars": return labels.length && num.length >= 2 ? 87 : 0;
+      case "stackedBars": return labels.length && num.length >= 2 && allNonnegative ? 67 : 0;
+      case "percentBars": return labels.length && num.length >= 2 && allNonnegative ? 62 : 0;
+      case "lollipop": return cats.length && num.length ? 79 : 0;
+      case "dumbbell": return cats.length && num.length >= 2 ? 91 : 0;
       case "bullet": return labels.length && num.length >= 2 ? 72 : 0;
-      case "waterfall": return labels.length && num.length ? 59 : 0;
+      case "waterfall": return labels.length && num.length ? (/change|variance|delta|contribution|increase|decrease/i.test(columns.map(c=>c.name).join(" ")) ? 90 : 45) : 0;
       case "pareto": return cats.length && num.length && allNonnegative ? 70 : 0;
       case "tornado": return cats.length && num.length >= 2 ? 57 : 0;
       case "histogram": return num.length && manyRows ? 89 : num.length ? 70 : 0;
@@ -174,7 +174,7 @@ export function recommendCharts(columns, rows, catalog, goal = "auto") {
       case "calendar": return dates.length && num.length ? 75 : 0;
       case "control": return dates.length && num.length && manyRows ? 72 : 0;
       case "gauge": return num.length ? 50 : 0;
-      case "radar": return cats.length && num.length >= 2 ? 68 : 0;
+      case "radar": return cats.length && num.length >= 3 ? 64 : 0;
       case "choropleth": return hasGeo && num.length ? 76 : 0;
       case "symbolMap": return columns.filter(c => /^(?:lat|latitude|lon|lng|longitude)$/i.test(c.name)).length >= 2 && num.length >= 2 ? 94 : 0;
       default: return 0;
@@ -194,13 +194,35 @@ export function recommendCharts(columns, rows, catalog, goal = "auto") {
     return descriptions[chart.family] || chart.bestFor;
   };
   const wants = goalFamilies[goal] || [];
+  // Evaluate ALL 40 sourced atlas types before ranking. Never award a score bonus
+  // merely because a chart is easy to render; unsupported but better analytical
+  // options must remain visible instead of silently collapsing to horizontal bars.
   return catalog.map(chart => {
-    let score = scoreFor(chart.id);
-    if (!score) return null;
-    if (wants.length) score += wants.includes(chart.family) ? 28 : -25;
-    if (chart.autoRenderable) score += 5;
-    return {...chart, score, rationale: whyFor(chart)};
-  }).filter(Boolean).sort((a, b) => b.score - a.score).slice(0, 12);
+    const sourceReferences = (chart.textbook?.sources || []).filter(s => /^https:\/\//.test(s.url || ""));
+    const pattern = chart.historicalDataPattern || "unspecified";
+    const fit = scoreFor(chart.id);
+    const matchedGoal = !wants.length || wants.includes(chart.family);
+    const score = fit ? Math.max(1, fit + (wants.length ? (matchedGoal ? 28 : -25) : 0)) : 0;
+    const eligible = fit > 0 && sourceReferences.length > 0;
+    const categoryColumn = cats[0];
+    const orientation = categoryColumn && (categoryColumn.distinct > 9 ||
+      rows.some(row => String(row[categoryColumn.name] ?? "").length > 20))
+      ? "horizontal" : "vertical";
+    const gate = !sourceReferences.length ? "Missing verified chart-method references." :
+      !fit ? "Dataset lacks the required data roles for this chart; do not force it." :
+      !matchedGoal ? "Possible shape match, but a different analytical family was requested." :
+      chart.autoRenderable ? "Eligible; SmartChart can render this chart." :
+      "Eligible reference candidate; requires a supported external renderer or manual design.";
+    return {...chart, eligible, score, gate, orientation,
+      sourceReferences, historicalPattern:pattern,
+      rationale: chart.bestFor + " " + whyFor(chart) +
+        " Historical data pattern: " + pattern.replace(/_/g," ") + "."};
+  }).sort((a,b)=>b.score-a.score || a.name.localeCompare(b.name));
+}
+
+export function recommendCharts(columns, rows, catalog, goal = "auto") {
+  return evaluateChartCandidates(columns,rows,catalog,goal)
+    .filter(chart => chart.eligible).slice(0,12);
 }
 
 export function chooseEncoding(columns, chartType) {
