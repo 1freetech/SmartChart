@@ -20,6 +20,20 @@ Open `index.html` via a static HTTP server (e.g. `python -m http.server 8000`) o
 
 **Scope:** All 40 atlas entries are migrated and browsable, but not all 40 are supported as auto-generated data-driven charts. Unsupported specialized plots remain discoverable as guidance.
 
+## Historically grounded chart selection (v2)
+
+SmartChart now uses **historical mathematical data relationships** together with modern analytical and publication standards:
+
+1. Profile the supplied dataset's variable types and measurement roles.
+2. Check all 40 chart types against their historical mathematical signatures (time order, categorical magnitude, quantitative pairs, composition, flows, hierarchy, and geography).
+3. Reject inappropriate shapes when essential fields or mathematical assumptions are absent. A Sankey needs flow endpoints and a magnitude; a Gantt needs task intervals; an OHLC candle must have valid prices.
+4. Rank valid candidates by structural suitability, the analytical goal, and modern editorial concerns. **Renderer availability does not earn a score bonus.**
+5. Explain why each chart fits, display research references and warnings, and keep nonrenderable but appropriate formats visible.
+
+These historical signatures are hand-curated chart-data archetypes, **not measured historical adoption rates** or machine-learned probabilities. Age alone does not make a visualization more accurate.
+
+See the [complete 40-chart encyclopedia textbook](docs/CHART_TEXTBOOK.md) (six additional sentences and two citations per entry), [historical-fit rules](src/history-methodology.mjs), and [regression tests](tests/history-methodology.test.mjs).
+
 ## Repository layout
 
 - `atlas/catalog.json`: machine-readable imported chart taxonomy (40 formats).
@@ -27,9 +41,11 @@ Open `index.html` via a static HTTP server (e.g. `python -m http.server 8000`) o
 - `atlas/examples/`: 40 original illustrative SVGs.
 - `atlas/2026/`: original editorial chart example.
 - `src/engine.mjs`: table parsing, inference, validation, scoring, recommendations.
+- `src/history-methodology.mjs`: historical mathematical signatures and modern guardrails.
 - `src/app.mjs`: frontend, preview, downloads.
 - `styles.css`: responsive interface.
-- `tests/engine.test.mjs`: node built-in test runner.
+- `tests/engine.test.mjs` and `tests/history-methodology.test.mjs`: unit and regression tests.
+- `docs/CHART_TEXTBOOK.md`: 40 encyclopedia entries with six additional sentences each and sources.
 - `docs/migration.md`: provenance and migration inventory.
 
 ## Development / checks
@@ -37,7 +53,7 @@ Open `index.html` via a static HTTP server (e.g. `python -m http.server 8000`) o
 Requires Node.js 20+ for tests only:
 
 ```bash
-node --test tests/engine.test.mjs
+node --test tests/*.test.mjs
 python -m http.server 8000
 ```
 
