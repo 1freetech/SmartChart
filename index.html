@@ -50,9 +50,10 @@
       </div>
       <div class="panel recommendation-panel">
         <div class="section-top"><div><span class="step">02 / DECIDE</span><h2>Smart recommendations</h2></div><span class="hint">Explainable, not a black box</span></div>
-        <p class="section-copy">Recommended formats are matched to your column types, data shape, and analytical goal. Specialized charts are clearly marked as reference-only.</p>
+        <p class="section-copy">All 40 source-backed chart styles are evaluated for data roles and analytical goal before recommendations are ranked. Rendering availability does not influence the fit score. Specialized charts are marked reference-only.</p>
         <div id="emptyRecommendations" class="empty-state"><span class="empty-icon">◈</span><strong>Your chart suggestions appear here</strong><p>Analyze a dataset or try the sample to see which visualizations fit.</p></div>
         <div id="recommendations" class="recommendations" hidden></div>
+        <details class="evidence-audit"><summary>Review all 40 chart styles and their research sources</summary><p class="microcopy">Every atlas style is checked for this dataset. Rejected and reference-only chart types remain visible, with citations and a reason.</p><div id="selectionAudit"></div></details>
       </div>
     </section>
     <section id="previewSection" class="panel preview-panel" hidden aria-labelledby="previewTitle">
@@ -63,6 +64,7 @@
         <label>Y measure<select id="ySelect"></select></label>
         <label>Second measure / value Z<select id="zSelect"></select></label>
         <label>Measurement unit<input id="unitInput" type="text" placeholder="MW, USD, J/TH, %..."></label>
+        <label>Bar orientation<select id="orientationSelect"><option value="vertical">Vertical columns (preferred)</option><option value="horizontal">Horizontal bars (long labels)</option></select></label>
         <label>Source / methodology<input id="sourceInput" type="text" placeholder="Dataset source, date and method"></label>
       </div>
       <div id="renderError" class="notice error" role="alert" hidden></div>
@@ -70,7 +72,7 @@
       <div class="preview-footer"><p id="previewNote">Values are drawn from your input; check units, provenance, and estimates before publishing.</p><button id="refreshBtn" type="button" class="btn neutral">↻ Update preview</button></div>
     </section>
     <section id="atlas" class="atlas-section" aria-labelledby="atlasTitle">
-      <div class="atlas-head"><div><span class="step">04 / EXPLORE</span><h2 id="atlasTitle">The complete Chart Atlas</h2><p>Explore 40 visual formats, their best applications, real-world editorial scenarios, and frequent mistakes. Illustrations are synthetic.</p></div><a class="atlas-link" href="./atlas/index.html" target="_blank" rel="noopener">Browse original reference ↗</a></div>
+      <div class="atlas-head"><div><span class="step">04 / EXPLORE</span><h2 id="atlasTitle">The complete Chart Atlas</h2><p>Explore all 40 chart formats, their historical and mathematical basis, linked textbooks, editorial examples and common mistakes. Illustrations are synthetic.</p></div><a class="atlas-link" href="./atlas/index.html" target="_blank" rel="noopener">Browse original reference ↗</a></div>
       <div class="atlas-controls"><div id="familyFilters" class="filters" role="group" aria-label="Chart families"></div><label class="search-wrap"><span class="sr-only">Search chart types</span><input type="search" id="atlasSearch" placeholder="Search chart types…"></label></div>
       <p id="atlasCount" class="atlas-count" aria-live="polite">Loading the chart catalog…</p>
       <div id="atlasGrid" class="atlas-grid"></div>
