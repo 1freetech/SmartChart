@@ -101,7 +101,7 @@ function renderRecommendations(){
     body.append(make("p","rec-rationale",chart.rationale));
     body.append(make("p","rec-only","Historical pattern: "+(chart.historicalPattern||"unspecified")+". "+chart.sourceReferences.length+" research sources; "+(chart.orientation==="vertical"?"vertical bars preferred when applicable":"long labels may need horizontal bars")+"."));
     if(!chart.autoRenderable)body.append(make("p","rec-only","View original chart and guidance · Auto-rendering not yet supported"));
-    body.append(make("p","rec-caution","Watch out: "+chart.caution));
+    body.append(make("p","rec-caution","Watch out: "+[chart.caution,...(chart.evidenceCautions||[])].join(" ")));
     card.append(art,body);
     card.addEventListener("click",()=>chooseChart(chart));
     container.append(card);
@@ -161,7 +161,7 @@ function openDetails(chart){
   body.append(make("h2","dialog-title",chart.name));
   const artwork=make("div","dialog-art"),pic=make("img");
   pic.src=imageUrl(chart);pic.alt="Schematic "+chart.name;artwork.append(pic);body.append(artwork);
-  for(const [name,text] of [["Best for",chart.bestFor],["Historical mathematical use",chart.textbook?.history||"No history recorded"],["How it encodes data",chart.textbook?.mathematics||"No method recorded"],["Data requirements",chart.textbook?.dataRequirements||chart.bestFor],["Modern interpretation",chart.textbook?.modernInterpretation||""],["Compare alternatives",chart.textbook?.chartComparison||""],["Editorial example",chart.editorialExample],["Caution",chart.caution]]){
+  for(const [name,text] of [["Best for",chart.bestFor],["Historical mathematical use",chart.textbook?.history||"No history recorded"],["How it encodes data",chart.textbook?.mathematics||"No method recorded"],["Data requirements",chart.textbook?.dataRequirements||chart.bestFor],["Modern interpretation",chart.textbook?.modernInterpretation||""],["Interpretation risks",chart.textbook?.interpretiveRisks||chart.caution],["Compare alternatives",chart.textbook?.chartComparison||""],["Editorial example",chart.editorialExample],["Caution",chart.caution]]){
     const p=make("p","dialog-text");const strong=make("strong","",name+": ");p.append(strong,document.createTextNode(text));body.append(p);
   }
   body.append(make("p","dialog-text",chart.autoRenderable?"This format can be generated from a compatible dataset using Chart Studio.":"This format is included in the complete Atlas, but automatic data rendering is not yet implemented."));
@@ -184,7 +184,7 @@ function openDetails(chart){
   if(!dialog.open)dialog.showModal();
 }
 function filteredAtlas(){
-  return state.catalog.filter(chart=>(state.family==="All"||chart.family===state.family)&&[chart.name,chart.bestFor,chart.editorialExample,chart.family].join(" ").toLowerCase().includes(state.query));
+  return state.catalog.filter(chart=>(state.family==="All"||chart.family===state.family)&&[chart.name,chart.bestFor,chart.editorialExample,chart.family,chart.textbook?.paragraph||"",chart.historicalDataPattern||""].join(" ").toLowerCase().includes(state.query));
 }
 function renderAtlas(){
   const data=filteredAtlas();
