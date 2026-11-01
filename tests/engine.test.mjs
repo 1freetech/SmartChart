@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {readFileSync} from "node:fs";
-import {parseTable,inferColumns,recommendCharts,chooseEncoding,numeric,dateValue} from "../src/engine.mjs";
+import {parseTable,inferColumns,recommendCharts,evaluateChartCandidates,chooseEncoding,numeric,dateValue} from "../src/engine.mjs";
 
 const catalog = JSON.parse(readFileSync(new URL("../atlas/catalog.json",import.meta.url),"utf-8")).charts;
 test("migration has exactly forty chart types and eight families",()=>{
@@ -77,4 +77,53 @@ test("missing values are counted and incomplete numerical cells do not silently 
   assert.equal(cols[1].missing,1);
   assert.equal(cols[1].type,"number");
   assert.equal(numeric(rows[1].MW),null);
+});
+
+test("the complete forty-type chart atlas has traceable historical and mathematical sources",()=>{
+  assert.equal(catalog.length,40);
+  for (const chart of catalog) {
+    assert.ok(chart.historicalDataPattern,chart.id+" lacks historic data pattern");
+    assert.ok(chart.textbook?.history,chart.id+" lacks chart history");
+    assert.ok(chart.textbook?.mathematics,chart.id+" lacks mathematics");
+    assert.ok(chart.textbook?.modernInterpretation,chart.id+" lacks modern interpretation");
+    assert.ok(chart.textbook?.sources?.length>=2,chart.id+" lacks at least two sources");
+    assert.ok(chart.textbook.sources.every(s=>/^https:\/\//.test(s.url)),chart.id+" has invalid source URL");
+  }
+});
+
+test("every chart family is audited before selecting, including rejected and reference-only options",()=>{
+  const {rows}=parseTable("Year,Hashrate_EH\n2024-01-01,650\n2025-01-01,850\n2026-01-01,1020");
+  const audit=evaluateChartCandidates(inferColumns(rows),rows,catalog,"trend");
+  assert.equal(audit.length,40);
+  assert.equal(new Set(audit.map(c=>c.id)).size,40);
+  assert.equal(audit[0].id,"line");
+  assert.ok(audit.every(c=>c.gate&&Array.isArray(c.sourceReferences)));
+  assert.ok(audit.find(c=>c.id==="sankey"&&!c.eligible));
+});
+
+test("analytical fitness outranks rendering convenience",()=>{
+  const {rows}=parseTable("Generation,Before_MW,After_MW\nSolar,100,150\nWind,80,95\nHydro,200,210");
+  const audit=evaluateChartCandidates(inferColumns(rows),rows,catalog,"compare");
+  assert.equal(audit[0].id,"dumbbell");
+  assert.equal(audit[0].autoRenderable,false);
+  assert.ok(audit[0].sourceReferences.length>=2);
+  assert.ok(audit.some(c=>c.id==="bars"&&c.autoRenderable));
+});
+
+test("column orientation favors vertical for short labels and horizontal only for long labels",()=>{
+  const short=parseTable("Site,Power_MW\nA,10\nB,20\nC,15");
+  const s=evaluateChartCandidates(inferColumns(short.rows),short.rows,catalog,"compare");
+  assert.equal(s.find(c=>c.id==="bars").orientation,"vertical");
+  const long=parseTable("Site,Power_MW\nVery long facility name east,10\nVery long facility name west,20");
+  const l=evaluateChartCandidates(inferColumns(long.rows),long.rows,catalog,"compare");
+  assert.equal(l.find(c=>c.id==="bars").orientation,"horizontal");
+});
+
+test("bars are not the default for time changes, distributions, or correlations",()=>{
+  const trend=parseTable("Date,MW\n2024-01-01,80\n2025-01-01,90\n2026-01-01,100");
+  assert.equal(recommendCharts(inferColumns(trend.rows),trend.rows,catalog,"trend")[0].id,"line");
+  const relation=parseTable("Electricity_kWh,Hashrate_TH\n100,8\n130,10\n140,12");
+  assert.equal(recommendCharts(inferColumns(relation.rows),relation.rows,catalog,"relationship")[0].id,"scatter");
+  const dist=parseTable("Measurement\n10\n12\n13\n15\n20\n21\n23\n24\n25\n28\n30\n32\n35\n40\n44\n45\n49\n55\n58\n60");
+  assert.equal(recommendCharts(inferColumns(dist.rows),dist.rows,catalog,"distribution")[0].id,"histogram");
 });
