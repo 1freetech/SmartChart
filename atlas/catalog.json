@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "2.0.0",
   "source": {
     "repository": "1freetech/Bitcoinversus.tech",
     "path": "editorial/chart-atlas/",
@@ -25,7 +25,27 @@
       "editorialExample": "ASIC efficiency (J/TH), 2000–2026",
       "caution": "Use real observation dates; label missing periods.",
       "illustration": "atlas/examples/01-line.svg",
-      "autoRenderable": true
+      "autoRenderable": true,
+      "textbook": {
+        "history": "Statistical line graphs were popularized for economic time series by William Playfair, linking recorded observations in their chronological sequence.",
+        "mathematics": "The mathematical operation maps each ordered time point to a measured value and draws connecting segments to expose rates of change.",
+        "dataRequirements": "Use the form when the horizontal variable has a defensible sequence and repeated measurements share units and definitions.",
+        "modernInterpretation": "Modern analysts use it for ASIC joules per terahash, electricity demand, market indices, and scientific sensor histories.",
+        "interpretiveRisks": "Keep gaps visible when sampling was interrupted because a continuous line may otherwise imply unsupported intermediate observations.",
+        "chartComparison": "Choose bars instead for independent categories, and choose a step chart when the quantity changes instantaneously at defined events.",
+        "paragraph": "Statistical line graphs were popularized for economic time series by William Playfair, linking recorded observations in their chronological sequence. The mathematical operation maps each ordered time point to a measured value and draws connecting segments to expose rates of change. Use the form when the horizontal variable has a defensible sequence and repeated measurements share units and definitions. Modern analysts use it for ASIC joules per terahash, electricity demand, market indices, and scientific sensor histories. Keep gaps visible when sampling was interrupted because a continuous line may otherwise imply unsupported intermediate observations. Choose bars instead for independent categories, and choose a step chart when the quantity changes instantaneously at defined events.",
+        "sources": [
+          {
+            "title": "Mathematical Association of America — History of statistical graphs",
+            "url": "https://old.maa.org/press/periodicals/convergence/seeing-and-understanding-data-a-mini-primary-source-project-for-students-of-statistics?device=mobile"
+          },
+          {
+            "title": "Wilke — Time-series visualization",
+            "url": "https://clauswilke.com/dataviz/time-series.html"
+          }
+        ]
+      },
+      "historicalDataPattern": "ordered_time_measure"
     },
     {
       "id": "area",
@@ -35,7 +55,27 @@
       "editorialExample": "Total installed industrial robot capacity",
       "caution": "Avoid if overlapping series obscure each other.",
       "illustration": "atlas/examples/02-area.svg",
-      "autoRenderable": true
+      "autoRenderable": true,
+      "textbook": {
+        "history": "Filled time-series graphs grew from the same quantitative tradition as Playfair-style line charts, with area emphasizing total magnitude.",
+        "mathematics": "At each time point the filled region extends from a fixed baseline to the observed value, so its shape encodes absolute size.",
+        "dataRequirements": "Use it for nonnegative, consistently measured sequences when magnitude and cumulative visual weight are more important than precise point comparison.",
+        "modernInterpretation": "Modern examples include sustained data-center load, annual energy generation, and the installed capacity of robotics fleets.",
+        "interpretiveRisks": "Truncated baselines or unrelated overlapping filled regions can exaggerate amounts and conceal one series behind another.",
+        "chartComparison": "Choose a line when slopes and exact changes matter most, and choose stacked area only when components form a meaningful total.",
+        "paragraph": "Filled time-series graphs grew from the same quantitative tradition as Playfair-style line charts, with area emphasizing total magnitude. At each time point the filled region extends from a fixed baseline to the observed value, so its shape encodes absolute size. Use it for nonnegative, consistently measured sequences when magnitude and cumulative visual weight are more important than precise point comparison. Modern examples include sustained data-center load, annual energy generation, and the installed capacity of robotics fleets. Truncated baselines or unrelated overlapping filled regions can exaggerate amounts and conceal one series behind another. Choose a line when slopes and exact changes matter most, and choose stacked area only when components form a meaningful total.",
+        "sources": [
+          {
+            "title": "Wilke — Time-series visualization",
+            "url": "https://clauswilke.com/dataviz/time-series.html"
+          },
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          }
+        ]
+      },
+      "historicalDataPattern": "ordered_time_magnitude"
     },
     {
       "id": "stackedArea",
@@ -45,7 +85,27 @@
       "editorialExample": "Global electricity generation by source",
       "caution": "Absolute amounts and shares answer different questions.",
       "illustration": "atlas/examples/03-stackedArea.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Statistical area diagrams were adapted to examine the evolving mix of categories within an economic or demographic total.",
+        "mathematics": "Each band is cumulatively placed on the sum of preceding bands, making its vertical thickness represent its component amount.",
+        "dataRequirements": "Require nonnegative, additive components observed at shared time points with matching units and clearly stated coverage.",
+        "modernInterpretation": "Use it today for electricity-generation mixes, hardware revenue segments, or portions of an evolving cloud workload.",
+        "interpretiveRisks": "Middle bands lack a common baseline, and missing categories can make apparent compositional change indistinguishable from reporting change.",
+        "chartComparison": "Prefer separate lines to compare individual trajectories, or 100-percent stacks when the question concerns share rather than absolute total.",
+        "paragraph": "Statistical area diagrams were adapted to examine the evolving mix of categories within an economic or demographic total. Each band is cumulatively placed on the sum of preceding bands, making its vertical thickness represent its component amount. Require nonnegative, additive components observed at shared time points with matching units and clearly stated coverage. Use it today for electricity-generation mixes, hardware revenue segments, or portions of an evolving cloud workload. Middle bands lack a common baseline, and missing categories can make apparent compositional change indistinguishable from reporting change. Prefer separate lines to compare individual trajectories, or 100-percent stacks when the question concerns share rather than absolute total.",
+        "sources": [
+          {
+            "title": "Wilke — Time-series visualization",
+            "url": "https://clauswilke.com/dataviz/time-series.html"
+          },
+          {
+            "title": "Wilke — Visualizing proportions",
+            "url": "https://clauswilke.com/dataviz/visualizing-proportions.html"
+          }
+        ]
+      },
+      "historicalDataPattern": "ordered_time_additive_components"
     },
     {
       "id": "step",
@@ -55,7 +115,27 @@
       "editorialExample": "Bitcoin block subsidies after halvings",
       "caution": "Do not interpolate gradual change between steps.",
       "illustration": "atlas/examples/04-step.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Piecewise-constant plots reflect mathematical step functions long used for tariffs, schedules, discrete control states, and policy regimes.",
+        "mathematics": "Between documented change points the value remains constant, and jumps occur only at a specified boundary.",
+        "dataRequirements": "Use this form for event-timestamped rates, rule states, reward schedules, or operational thresholds rather than smoothly varying measurements.",
+        "modernInterpretation": "Bitcoin subsidy epochs and staged power-capacity approvals are modern examples where a sloped interpolation would be misleading.",
+        "interpretiveRisks": "Define whether changes take effect before or after each timestamp because left- versus right-continuous steps differ.",
+        "chartComparison": "Prefer a line for continuously sampled temperatures or prices, not a stair-step unless observations genuinely represent discrete regimes.",
+        "paragraph": "Piecewise-constant plots reflect mathematical step functions long used for tariffs, schedules, discrete control states, and policy regimes. Between documented change points the value remains constant, and jumps occur only at a specified boundary. Use this form for event-timestamped rates, rule states, reward schedules, or operational thresholds rather than smoothly varying measurements. Bitcoin subsidy epochs and staged power-capacity approvals are modern examples where a sloped interpolation would be misleading. Define whether changes take effect before or after each timestamp because left- versus right-continuous steps differ. Prefer a line for continuously sampled temperatures or prices, not a stair-step unless observations genuinely represent discrete regimes.",
+        "sources": [
+          {
+            "title": "Wilke — Time-series visualization",
+            "url": "https://clauswilke.com/dataviz/time-series.html"
+          },
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          }
+        ]
+      },
+      "historicalDataPattern": "discrete_state_changes"
     },
     {
       "id": "candlestick",
@@ -65,7 +145,27 @@
       "editorialExample": "Bitcoin daily OHLC trading ranges",
       "caution": "Price candles do not show transaction volume.",
       "illustration": "atlas/examples/05-candlestick.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Candlestick displays belong to a long Japanese market-charting tradition, later standardized in modern financial analysis for interval quotations.",
+        "mathematics": "Each mark encodes four order-statistic-like market observations: open, high, low, and close within one defined interval.",
+        "dataRequirements": "Require all four consistently timestamped prices with high at least as large as open and close and low no greater than either.",
+        "modernInterpretation": "Modern trading interfaces use candles to summarize Bitcoin, equities, and commodity price intervals alongside separate volume panels.",
+        "interpretiveRisks": "Color conventions are not universal, and the display does not reveal intraperiod transaction paths or trading volume by itself.",
+        "chartComparison": "Choose a line for a single closing-price series, or a range plot when only interval minima and maxima are available.",
+        "paragraph": "Candlestick displays belong to a long Japanese market-charting tradition, later standardized in modern financial analysis for interval quotations. Each mark encodes four order-statistic-like market observations: open, high, low, and close within one defined interval. Require all four consistently timestamped prices with high at least as large as open and close and low no greater than either. Modern trading interfaces use candles to summarize Bitcoin, equities, and commodity price intervals alongside separate volume panels. Color conventions are not universal, and the display does not reveal intraperiod transaction paths or trading volume by itself. Choose a line for a single closing-price series, or a range plot when only interval minima and maxima are available.",
+        "sources": [
+          {
+            "title": "Wilke — Time-series visualization",
+            "url": "https://clauswilke.com/dataviz/time-series.html"
+          },
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          }
+        ]
+      },
+      "historicalDataPattern": "time_ohlc"
     },
     {
       "id": "spark",
@@ -75,7 +175,27 @@
       "editorialExample": "30-day miner uptime in equipment tables",
       "caution": "Pair with a clear metric, unit, and time window.",
       "illustration": "atlas/examples/06-spark.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Sparklines extend the compact time-series tradition into dense tables and were promoted as word-sized statistical graphics.",
+        "mathematics": "The display compresses an ordered numeric sequence into a small trajectory, generally minimizing axes and annotation.",
+        "dataRequirements": "Use sparklines only where surrounding labels provide a metric name, observation interval, scale, and context.",
+        "modernInterpretation": "Modern infrastructure dashboards place uptime, equipment error rates, and throughput history beside rows of operational KPIs.",
+        "interpretiveRisks": "Without consistent scales across rows, two sparklines can appear similarly volatile despite dramatically different measurement ranges.",
+        "chartComparison": "Use a full line chart whenever the reader must inspect exact dates, comparative magnitudes, or uncertainty.",
+        "paragraph": "Sparklines extend the compact time-series tradition into dense tables and were promoted as word-sized statistical graphics. The display compresses an ordered numeric sequence into a small trajectory, generally minimizing axes and annotation. Use sparklines only where surrounding labels provide a metric name, observation interval, scale, and context. Modern infrastructure dashboards place uptime, equipment error rates, and throughput history beside rows of operational KPIs. Without consistent scales across rows, two sparklines can appear similarly volatile despite dramatically different measurement ranges. Use a full line chart whenever the reader must inspect exact dates, comparative magnitudes, or uncertainty.",
+        "sources": [
+          {
+            "title": "Wilke — Time-series visualization",
+            "url": "https://clauswilke.com/dataviz/time-series.html"
+          },
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          }
+        ]
+      },
+      "historicalDataPattern": "ordered_time_measure"
     },
     {
       "id": "slope",
@@ -85,7 +205,27 @@
       "editorialExample": "Site power draw before and after upgrades",
       "caution": "Two endpoints cannot prove what happened between.",
       "illustration": "atlas/examples/07-slope.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Slopegraphs simplify historical before-and-after tables by connecting a small set of corresponding values at two endpoints.",
+        "mathematics": "Each segment's slope shows direction and size of change between matched subjects on a shared numeric scale.",
+        "dataRequirements": "Require paired measurements with identical units, compatible definitions, and exactly two explicitly named periods or conditions.",
+        "modernInterpretation": "Use the chart for pre-upgrade versus post-upgrade site power draw or paired hardware efficiency benchmarks.",
+        "interpretiveRisks": "The line says nothing about intermediate movements, and crossing lines become difficult to interpret when there are many groups.",
+        "chartComparison": "Choose a dumbbell plot for an especially compact paired-value comparison or a time-series chart if intermediate observations exist.",
+        "paragraph": "Slopegraphs simplify historical before-and-after tables by connecting a small set of corresponding values at two endpoints. Each segment's slope shows direction and size of change between matched subjects on a shared numeric scale. Require paired measurements with identical units, compatible definitions, and exactly two explicitly named periods or conditions. Use the chart for pre-upgrade versus post-upgrade site power draw or paired hardware efficiency benchmarks. The line says nothing about intermediate movements, and crossing lines become difficult to interpret when there are many groups. Choose a dumbbell plot for an especially compact paired-value comparison or a time-series chart if intermediate observations exist.",
+        "sources": [
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          },
+          {
+            "title": "Wilke — Visualizing amounts",
+            "url": "https://clauswilke.com/dataviz/visualizing-amounts.html"
+          }
+        ]
+      },
+      "historicalDataPattern": "paired_endpoints"
     },
     {
       "id": "bump",
@@ -95,7 +235,27 @@
       "editorialExample": "Top GPU vendors by yearly shipment rank",
       "caution": "Show rank, not absolute share, on the vertical axis.",
       "illustration": "atlas/examples/08-bump.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Rank-order diagrams developed from recurring league tables and the mathematical task of tracking changing ordinal positions.",
+        "mathematics": "Each line connects an entity's rank in successive periods; the vertical axis encodes order rather than measured magnitude.",
+        "dataRequirements": "Require a rank per entity and period derived from the same metric, with a disclosed approach to ties and missing entries.",
+        "modernInterpretation": "Modern examples include yearly GPU-shipment rankings, top chipmakers by revenue position, and model benchmark leaderboards.",
+        "interpretiveRisks": "Changes in rank can occur without meaningful absolute change, so do not present them as evidence of growth in share.",
+        "chartComparison": "Choose multi-series lines or bars when the magnitude of the underlying quantity matters more than placement.",
+        "paragraph": "Rank-order diagrams developed from recurring league tables and the mathematical task of tracking changing ordinal positions. Each line connects an entity's rank in successive periods; the vertical axis encodes order rather than measured magnitude. Require a rank per entity and period derived from the same metric, with a disclosed approach to ties and missing entries. Modern examples include yearly GPU-shipment rankings, top chipmakers by revenue position, and model benchmark leaderboards. Changes in rank can occur without meaningful absolute change, so do not present them as evidence of growth in share. Choose multi-series lines or bars when the magnitude of the underlying quantity matters more than placement.",
+        "sources": [
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          },
+          {
+            "title": "Wilke — Time-series visualization",
+            "url": "https://clauswilke.com/dataviz/time-series.html"
+          }
+        ]
+      },
+      "historicalDataPattern": "repeated_rankings"
     },
     {
       "id": "bars",
@@ -105,7 +265,27 @@
       "editorialExample": "Largest data center projects by MW",
       "caution": "Start the value axis at zero for ordinary bars.",
       "illustration": "atlas/examples/09-bars.svg",
-      "autoRenderable": true
+      "autoRenderable": true,
+      "textbook": {
+        "history": "William Playfair helped establish the bar chart for comparing economic observations by category rather than following an ordered curve.",
+        "mathematics": "The length of each rectangle encodes an amount measured from a common zero, allowing direct magnitude comparison.",
+        "dataRequirements": "Use it for one numeric measure across independent named categories, including clearly defined groups and consistent denominators.",
+        "modernInterpretation": "Modern reporting uses horizontal bars for megawatt rankings, ASIC shipments by manufacturer, and counts of data-center projects.",
+        "interpretiveRisks": "Sorting unordered categories usually helps, while arbitrary category rearrangement or truncated value axes can distort ranking.",
+        "chartComparison": "Choose a line for genuine temporal continuity and a dot plot when the value range is narrow relative to a meaningful nonzero baseline.",
+        "paragraph": "William Playfair helped establish the bar chart for comparing economic observations by category rather than following an ordered curve. The length of each rectangle encodes an amount measured from a common zero, allowing direct magnitude comparison. Use it for one numeric measure across independent named categories, including clearly defined groups and consistent denominators. Modern reporting uses horizontal bars for megawatt rankings, ASIC shipments by manufacturer, and counts of data-center projects. Sorting unordered categories usually helps, while arbitrary category rearrangement or truncated value axes can distort ranking. Choose a line for genuine temporal continuity and a dot plot when the value range is narrow relative to a meaningful nonzero baseline.",
+        "sources": [
+          {
+            "title": "Mathematical Association of America — History of statistical graphs",
+            "url": "https://old.maa.org/press/periodicals/convergence/seeing-and-understanding-data-a-mini-primary-source-project-for-students-of-statistics?device=mobile"
+          },
+          {
+            "title": "Wilke — Visualizing amounts",
+            "url": "https://clauswilke.com/dataviz/visualizing-amounts.html"
+          }
+        ]
+      },
+      "historicalDataPattern": "categorical_magnitudes"
     },
     {
       "id": "groupedBars",
@@ -115,7 +295,27 @@
       "editorialExample": "Proposed versus operating MW by state",
       "caution": "Too many group members become unreadable.",
       "illustration": "atlas/examples/10-groupedBars.svg",
-      "autoRenderable": true
+      "autoRenderable": true,
+      "textbook": {
+        "history": "Grouped bars extend classical categorical comparison to two populations, periods, or treatments measured on the same numeric scale.",
+        "mathematics": "Within each category multiple bar lengths share a zero origin, so side-by-side differences are visible without arithmetic subtraction.",
+        "dataRequirements": "Require comparable measures across the same labeled groups and a limited number of cohorts or series.",
+        "modernInterpretation": "Use it today for announced versus operating data-center MW or hardware throughput under two test conditions.",
+        "interpretiveRisks": "Excess groups overwhelm a reader and prevent easy comparison of any single series across distant categories.",
+        "chartComparison": "Choose a dumbbell for exactly two matched measurements or small-multiple bars when numerous subgroup colors would be required.",
+        "paragraph": "Grouped bars extend classical categorical comparison to two populations, periods, or treatments measured on the same numeric scale. Within each category multiple bar lengths share a zero origin, so side-by-side differences are visible without arithmetic subtraction. Require comparable measures across the same labeled groups and a limited number of cohorts or series. Use it today for announced versus operating data-center MW or hardware throughput under two test conditions. Excess groups overwhelm a reader and prevent easy comparison of any single series across distant categories. Choose a dumbbell for exactly two matched measurements or small-multiple bars when numerous subgroup colors would be required.",
+        "sources": [
+          {
+            "title": "Wilke — Visualizing amounts",
+            "url": "https://clauswilke.com/dataviz/visualizing-amounts.html"
+          },
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          }
+        ]
+      },
+      "historicalDataPattern": "categorical_cohorts"
     },
     {
       "id": "stackedBars",
@@ -125,7 +325,27 @@
       "editorialExample": "AI server bill of materials by supplier",
       "caution": "Internal components are hard to compare across bars.",
       "illustration": "atlas/examples/11-stackedBars.svg",
-      "autoRenderable": true
+      "autoRenderable": true,
+      "textbook": {
+        "history": "Stacked bars arose naturally from tabulated totals whose subgroups could be counted and added without changing measurement units.",
+        "mathematics": "Each component length adds to the previous component so the complete bar represents the sum of its parts.",
+        "dataRequirements": "Require mutually exclusive nonnegative components with a meaningful arithmetic total and matching definitions across categories.",
+        "modernInterpretation": "Modern examples include server bill-of-materials costs, facility electricity by equipment class, and workload allocation across services.",
+        "interpretiveRisks": "Internal parts lack a shared baseline, and adding averages, rates, or overlapping categories makes the implied total invalid.",
+        "chartComparison": "Choose grouped bars to compare individual subgroup values or 100-percent bars when relative shares are the central question.",
+        "paragraph": "Stacked bars arose naturally from tabulated totals whose subgroups could be counted and added without changing measurement units. Each component length adds to the previous component so the complete bar represents the sum of its parts. Require mutually exclusive nonnegative components with a meaningful arithmetic total and matching definitions across categories. Modern examples include server bill-of-materials costs, facility electricity by equipment class, and workload allocation across services. Internal parts lack a shared baseline, and adding averages, rates, or overlapping categories makes the implied total invalid. Choose grouped bars to compare individual subgroup values or 100-percent bars when relative shares are the central question.",
+        "sources": [
+          {
+            "title": "Wilke — Visualizing amounts",
+            "url": "https://clauswilke.com/dataviz/visualizing-amounts.html"
+          },
+          {
+            "title": "Wilke — Visualizing proportions",
+            "url": "https://clauswilke.com/dataviz/visualizing-proportions.html"
+          }
+        ]
+      },
+      "historicalDataPattern": "additive_components"
     },
     {
       "id": "percentBars",
@@ -135,7 +355,27 @@
       "editorialExample": "Energy-source shares by country",
       "caution": "Does not reveal total underlying market size.",
       "illustration": "atlas/examples/12-percentBars.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Percentage bars adapt historical contingency tables and proportional displays to compare compositions when group totals differ.",
+        "mathematics": "Each category's component amounts are divided by that category's total, making every full bar exactly 100 percent.",
+        "dataRequirements": "Require nonnegative mutually exclusive parts, nonzero totals, and a clear denominator for every group.",
+        "modernInterpretation": "Use them for regional generation mixes, data-center cooling technology shares, and customer-class distributions.",
+        "interpretiveRisks": "The chart hides absolute market or population size, so report group totals when they matter to the interpretation.",
+        "chartComparison": "Choose ordinary stacked bars when total counts matter more than share, or grouped bars for precise subgroup comparison.",
+        "paragraph": "Percentage bars adapt historical contingency tables and proportional displays to compare compositions when group totals differ. Each category's component amounts are divided by that category's total, making every full bar exactly 100 percent. Require nonnegative mutually exclusive parts, nonzero totals, and a clear denominator for every group. Use them for regional generation mixes, data-center cooling technology shares, and customer-class distributions. The chart hides absolute market or population size, so report group totals when they matter to the interpretation. Choose ordinary stacked bars when total counts matter more than share, or grouped bars for precise subgroup comparison.",
+        "sources": [
+          {
+            "title": "Wilke — Visualizing proportions",
+            "url": "https://clauswilke.com/dataviz/visualizing-proportions.html"
+          },
+          {
+            "title": "Wilke — Visualizing amounts",
+            "url": "https://clauswilke.com/dataviz/visualizing-amounts.html"
+          }
+        ]
+      },
+      "historicalDataPattern": "normalized_composition"
     },
     {
       "id": "lollipop",
@@ -145,7 +385,27 @@
       "editorialExample": "Robotic installations by industry",
       "caution": "Keep baseline and sorting consistent.",
       "illustration": "atlas/examples/13-lollipop.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Lollipop plots are a minimalist descendant of position-based dot plots and categorical bar charts used for simple comparisons.",
+        "mathematics": "A line extends from a common reference to a dot at the observed value, emphasizing a precise endpoint over filled area.",
+        "dataRequirements": "Use them for a moderate set of numeric category observations that share units and do not require composition.",
+        "modernInterpretation": "Modern applications include robotics installation rankings and smaller equipment performance tables where bars feel visually heavy.",
+        "interpretiveRisks": "Keep reference points and sorting consistent; decorative stems can exaggerate minute differences if scales are poorly chosen.",
+        "chartComparison": "Prefer a conventional bar when zero-based magnitude is essential or a dot plot when the baseline should not dominate.",
+        "paragraph": "Lollipop plots are a minimalist descendant of position-based dot plots and categorical bar charts used for simple comparisons. A line extends from a common reference to a dot at the observed value, emphasizing a precise endpoint over filled area. Use them for a moderate set of numeric category observations that share units and do not require composition. Modern applications include robotics installation rankings and smaller equipment performance tables where bars feel visually heavy. Keep reference points and sorting consistent; decorative stems can exaggerate minute differences if scales are poorly chosen. Prefer a conventional bar when zero-based magnitude is essential or a dot plot when the baseline should not dominate.",
+        "sources": [
+          {
+            "title": "Wilke — Visualizing amounts",
+            "url": "https://clauswilke.com/dataviz/visualizing-amounts.html"
+          },
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          }
+        ]
+      },
+      "historicalDataPattern": "categorical_magnitudes"
     },
     {
       "id": "dumbbell",
@@ -155,7 +415,27 @@
       "editorialExample": "Advertised versus measured robot runtime",
       "caution": "Clearly identify what each endpoint represents.",
       "illustration": "atlas/examples/14-dumbbell.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Paired-dot diagrams develop the statistical comparison of matched observations without turning two time points into a full time series.",
+        "mathematics": "Two endpoints share a category axis and a connecting segment, so their signed difference can be read visually.",
+        "dataRequirements": "Require paired values measured on an identical scale for every category and explicit identities for both endpoints.",
+        "modernInterpretation": "Modern engineers compare advertised and measured runtime, before-and-after efficiency, or different benchmark configurations this way.",
+        "interpretiveRisks": "Do not infer the path between endpoints, and use consistent pair ordering to keep the direction legible.",
+        "chartComparison": "Use a slopegraph for a small two-period story or grouped bars when individual magnitudes need separate zero-baseline emphasis.",
+        "paragraph": "Paired-dot diagrams develop the statistical comparison of matched observations without turning two time points into a full time series. Two endpoints share a category axis and a connecting segment, so their signed difference can be read visually. Require paired values measured on an identical scale for every category and explicit identities for both endpoints. Modern engineers compare advertised and measured runtime, before-and-after efficiency, or different benchmark configurations this way. Do not infer the path between endpoints, and use consistent pair ordering to keep the direction legible. Use a slopegraph for a small two-period story or grouped bars when individual magnitudes need separate zero-baseline emphasis.",
+        "sources": [
+          {
+            "title": "Wilke — Visualizing amounts",
+            "url": "https://clauswilke.com/dataviz/visualizing-amounts.html"
+          },
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          }
+        ]
+      },
+      "historicalDataPattern": "paired_endpoints"
     },
     {
       "id": "bullet",
@@ -165,7 +445,27 @@
       "editorialExample": "Data center utilization versus safe limit",
       "caution": "Do not bury the target benchmark.",
       "illustration": "atlas/examples/15-bullet.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Bullet graphs modernized business scorecards by replacing dashboard gauges with compact quantitative bars and targets.",
+        "mathematics": "Actual performance is encoded by length, while an independent reference mark encodes a target and bands may encode performance ranges.",
+        "dataRequirements": "Require a measured actual value, a justified target, and compatible scales with any qualitative performance bands.",
+        "modernInterpretation": "Modern uses include rack utilization versus a safe threshold or preventive-maintenance performance against a service-level objective.",
+        "interpretiveRisks": "Do not invent target thresholds, and do not confuse statistical control limits with management goals.",
+        "chartComparison": "Use a conventional bar for simple cross-category amounts or a control chart for process variability over time.",
+        "paragraph": "Bullet graphs modernized business scorecards by replacing dashboard gauges with compact quantitative bars and targets. Actual performance is encoded by length, while an independent reference mark encodes a target and bands may encode performance ranges. Require a measured actual value, a justified target, and compatible scales with any qualitative performance bands. Modern uses include rack utilization versus a safe threshold or preventive-maintenance performance against a service-level objective. Do not invent target thresholds, and do not confuse statistical control limits with management goals. Use a conventional bar for simple cross-category amounts or a control chart for process variability over time.",
+        "sources": [
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          },
+          {
+            "title": "Wilke — Visualizing amounts",
+            "url": "https://clauswilke.com/dataviz/visualizing-amounts.html"
+          }
+        ]
+      },
+      "historicalDataPattern": "actual_target"
     },
     {
       "id": "waterfall",
@@ -175,7 +475,27 @@
       "editorialExample": "MW added or lost from facility capacity",
       "caution": "Make start, contributions, and end reconcile.",
       "illustration": "atlas/examples/16-waterfall.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Waterfall charts formalize the accounting bridge between an initial balance, sequential signed changes, and a final total.",
+        "mathematics": "Each contribution begins at the previous cumulative level, with increases and decreases algebraically reconciling to the endpoint.",
+        "dataRequirements": "Require an initial value, ordered delta contributions, and a final value that can be verified by arithmetic.",
+        "modernInterpretation": "Modern data-center reports use them to reconcile capacity added, capacity retired, and available megawatts across a quarter.",
+        "interpretiveRisks": "A missing contribution or an inconsistent sign convention breaks the calculation even if the picture looks plausible.",
+        "chartComparison": "Choose ordinary bars for independent differences and a time-series line for repeated final balances without explained components.",
+        "paragraph": "Waterfall charts formalize the accounting bridge between an initial balance, sequential signed changes, and a final total. Each contribution begins at the previous cumulative level, with increases and decreases algebraically reconciling to the endpoint. Require an initial value, ordered delta contributions, and a final value that can be verified by arithmetic. Modern data-center reports use them to reconcile capacity added, capacity retired, and available megawatts across a quarter. A missing contribution or an inconsistent sign convention breaks the calculation even if the picture looks plausible. Choose ordinary bars for independent differences and a time-series line for repeated final balances without explained components.",
+        "sources": [
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          },
+          {
+            "title": "Wilke — Visualizing amounts",
+            "url": "https://clauswilke.com/dataviz/visualizing-amounts.html"
+          }
+        ]
+      },
+      "historicalDataPattern": "reconcilable_changes"
     },
     {
       "id": "pareto",
@@ -185,7 +505,27 @@
       "editorialExample": "Primary causes of ASIC downtime",
       "caution": "Measure causes by the same denominator.",
       "illustration": "atlas/examples/17-pareto.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Pareto diagrams combine ranked categorical counts with the cumulative-share reasoning associated with quality-control analysis.",
+        "mathematics": "Bars are sorted descending by a common nonnegative measure, and a cumulative curve shows their fraction of the whole.",
+        "dataRequirements": "Require nonoverlapping causes or categories with counts or losses measured using the same exposure and denominator.",
+        "modernInterpretation": "Use them to prioritize ASIC failure classes, recurring network incidents, or causes of planned downtime.",
+        "interpretiveRisks": "The familiar 80/20 pattern is a heuristic, not a statistical law or proof of causal importance.",
+        "chartComparison": "Choose a simple ranked bar chart when cumulative contribution would not change the decision.",
+        "paragraph": "Pareto diagrams combine ranked categorical counts with the cumulative-share reasoning associated with quality-control analysis. Bars are sorted descending by a common nonnegative measure, and a cumulative curve shows their fraction of the whole. Require nonoverlapping causes or categories with counts or losses measured using the same exposure and denominator. Use them to prioritize ASIC failure classes, recurring network incidents, or causes of planned downtime. The familiar 80/20 pattern is a heuristic, not a statistical law or proof of causal importance. Choose a simple ranked bar chart when cumulative contribution would not change the decision.",
+        "sources": [
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          },
+          {
+            "title": "NIST — Exploratory Data Analysis handbook",
+            "url": "https://www.nist.gov/publications/nistsematech-e-handbook-statistical-methods-chapter-1-exploratory-data-analysis"
+          }
+        ]
+      },
+      "historicalDataPattern": "categorical_cause_counts"
     },
     {
       "id": "tornado",
@@ -195,7 +535,27 @@
       "editorialExample": "Robot ROI sensitivity to labor and energy costs",
       "caution": "State baseline and scenario assumptions.",
       "illustration": "atlas/examples/18-tornado.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Tornado diagrams grew from sensitivity analysis in decision modeling, where assumptions are varied around a reference case.",
+        "mathematics": "Horizontal signed bars show how low and high input scenarios change a defined outcome relative to one baseline.",
+        "dataRequirements": "Require a documented baseline model and comparable one-at-a-time perturbations or clearly specified scenario ranges.",
+        "modernInterpretation": "Modern teams use them to inspect mining-project profitability sensitivity to electricity price, hashprice, and hardware cost.",
+        "interpretiveRisks": "Independent changes cannot represent correlated inputs or full probabilistic uncertainty without a more complete model.",
+        "chartComparison": "Use a waterfall for changes that actually sum and a scatter plot for measured—not scenario-derived—relationships.",
+        "paragraph": "Tornado diagrams grew from sensitivity analysis in decision modeling, where assumptions are varied around a reference case. Horizontal signed bars show how low and high input scenarios change a defined outcome relative to one baseline. Require a documented baseline model and comparable one-at-a-time perturbations or clearly specified scenario ranges. Modern teams use them to inspect mining-project profitability sensitivity to electricity price, hashprice, and hardware cost. Independent changes cannot represent correlated inputs or full probabilistic uncertainty without a more complete model. Use a waterfall for changes that actually sum and a scatter plot for measured—not scenario-derived—relationships.",
+        "sources": [
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          },
+          {
+            "title": "NIST — Exploratory Data Analysis handbook",
+            "url": "https://www.nist.gov/publications/nistsematech-e-handbook-statistical-methods-chapter-1-exploratory-data-analysis"
+          }
+        ]
+      },
+      "historicalDataPattern": "sensitivity_scenarios"
     },
     {
       "id": "histogram",
@@ -205,7 +565,27 @@
       "editorialExample": "Hashboard temperature distributions",
       "caution": "Bin widths can change the perceived shape.",
       "illustration": "atlas/examples/19-histogram.svg",
-      "autoRenderable": true
+      "autoRenderable": true,
+      "textbook": {
+        "history": "Histograms became central to statistical tabulation of frequencies as measured samples grew too large for individual inspection.",
+        "mathematics": "The numeric axis is partitioned into adjacent bins and the bar heights represent frequencies or densities within those intervals.",
+        "dataRequirements": "Require multiple observations from one quantitative variable and a disclosed binning rule, especially for unequal-width bins.",
+        "modernInterpretation": "Modern telemetry systems use histograms for chip temperatures, request latency, and distributions of machine power draw.",
+        "interpretiveRisks": "Bin width can create or hide modes, and a histogram of averages is not a substitute for raw measurement distributions.",
+        "chartComparison": "Choose a boxplot for a compact multi-group summary or a density curve when a justified smoothing estimate is useful.",
+        "paragraph": "Histograms became central to statistical tabulation of frequencies as measured samples grew too large for individual inspection. The numeric axis is partitioned into adjacent bins and the bar heights represent frequencies or densities within those intervals. Require multiple observations from one quantitative variable and a disclosed binning rule, especially for unequal-width bins. Modern telemetry systems use histograms for chip temperatures, request latency, and distributions of machine power draw. Bin width can create or hide modes, and a histogram of averages is not a substitute for raw measurement distributions. Choose a boxplot for a compact multi-group summary or a density curve when a justified smoothing estimate is useful.",
+        "sources": [
+          {
+            "title": "Wilke — Histograms and density plots",
+            "url": "https://clauswilke.com/dataviz/histograms-density-plots.html"
+          },
+          {
+            "title": "NIST — Exploratory Data Analysis handbook",
+            "url": "https://www.nist.gov/publications/nistsematech-e-handbook-statistical-methods-chapter-1-exploratory-data-analysis"
+          }
+        ]
+      },
+      "historicalDataPattern": "univariate_sample"
     },
     {
       "id": "boxplot",
@@ -215,7 +595,27 @@
       "editorialExample": "Technician salaries by experience group",
       "caution": "State quartile and whisker definitions.",
       "illustration": "atlas/examples/20-boxplot.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "John Tukey popularized the box-and-whisker display through exploratory data analysis in the 1970s, building on earlier summaries of spread.",
+        "mathematics": "A box marks quartiles around the median while whiskers and optional points summarize tails under a declared whisker convention.",
+        "dataRequirements": "Require quantitative observations with enough samples per group for median and quantile summaries to be stable.",
+        "modernInterpretation": "Modern comparisons use boxplots for technician salary ranges, repair durations, or thermal spread across hardware cohorts.",
+        "interpretiveRisks": "Different whisker rules change which values count as outliers, and a small sample can hide multimodal structure.",
+        "chartComparison": "Choose a violin for distribution shape or a dot plot when displaying all individual observations is more informative.",
+        "paragraph": "John Tukey popularized the box-and-whisker display through exploratory data analysis in the 1970s, building on earlier summaries of spread. A box marks quartiles around the median while whiskers and optional points summarize tails under a declared whisker convention. Require quantitative observations with enough samples per group for median and quantile summaries to be stable. Modern comparisons use boxplots for technician salary ranges, repair durations, or thermal spread across hardware cohorts. Different whisker rules change which values count as outliers, and a small sample can hide multimodal structure. Choose a violin for distribution shape or a dot plot when displaying all individual observations is more informative.",
+        "sources": [
+          {
+            "title": "Kafadar — Boxplot history and method (2026)",
+            "url": "https://wires.onlinelibrary.wiley.com/doi/10.1002/wics.70073"
+          },
+          {
+            "title": "Wilke — Boxplots, violins, and distributions",
+            "url": "https://clauswilke.com/dataviz/boxplots-violins.html"
+          }
+        ]
+      },
+      "historicalDataPattern": "grouped_samples"
     },
     {
       "id": "violin",
@@ -225,7 +625,27 @@
       "editorialExample": "Distribution of shift-length robot runtimes",
       "caution": "Needs sufficient observations and a defined scale.",
       "illustration": "atlas/examples/21-violin.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Violin plots extend boxplots with mirrored smoothed densities, reflecting computing-era advances beyond hand-drawn summary statistics.",
+        "mathematics": "The width at a measured value encodes an estimated probability density rather than a count of literal records.",
+        "dataRequirements": "Use them to compare adequately sampled quantitative distributions on common measurement scales.",
+        "modernInterpretation": "Modern operations teams can inspect runtime, power, or fan-speed distributions across ASIC batches or facilities.",
+        "interpretiveRisks": "Bandwidth choice can invent or erase apparent peaks, so annotate sample sizes and optionally overlay raw observations.",
+        "chartComparison": "Choose boxplots for robust quartile comparisons or jittered dots when each observation should remain visible.",
+        "paragraph": "Violin plots extend boxplots with mirrored smoothed densities, reflecting computing-era advances beyond hand-drawn summary statistics. The width at a measured value encodes an estimated probability density rather than a count of literal records. Use them to compare adequately sampled quantitative distributions on common measurement scales. Modern operations teams can inspect runtime, power, or fan-speed distributions across ASIC batches or facilities. Bandwidth choice can invent or erase apparent peaks, so annotate sample sizes and optionally overlay raw observations. Choose boxplots for robust quartile comparisons or jittered dots when each observation should remain visible.",
+        "sources": [
+          {
+            "title": "Wilke — Boxplots, violins, and distributions",
+            "url": "https://clauswilke.com/dataviz/boxplots-violins.html"
+          },
+          {
+            "title": "Wilke — Histograms and density plots",
+            "url": "https://clauswilke.com/dataviz/histograms-density-plots.html"
+          }
+        ]
+      },
+      "historicalDataPattern": "dense_grouped_samples"
     },
     {
       "id": "dot",
@@ -235,7 +655,27 @@
       "editorialExample": "Individual miner failures across facilities",
       "caution": "Avoid jitter that disguises the actual values.",
       "illustration": "atlas/examples/22-dot.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Dot and strip displays preserve the statistical tradition of showing observations directly, instead of replacing them with aggregates.",
+        "mathematics": "Each mark locates an individual measured value, and careful jitter or beeswarm packing reduces overlapping identical positions.",
+        "dataRequirements": "Use them for samples small enough to inspect or for grouped data where hidden outliers would be consequential.",
+        "modernInterpretation": "Modern applications include individual miner faults, repair durations, and device-to-device performance variation.",
+        "interpretiveRisks": "Random jitter must be confined to the nonvalue axis, and huge samples quickly become overplotted.",
+        "chartComparison": "Choose a histogram or boxplot when the sample is too large for faithful individual dots.",
+        "paragraph": "Dot and strip displays preserve the statistical tradition of showing observations directly, instead of replacing them with aggregates. Each mark locates an individual measured value, and careful jitter or beeswarm packing reduces overlapping identical positions. Use them for samples small enough to inspect or for grouped data where hidden outliers would be consequential. Modern applications include individual miner faults, repair durations, and device-to-device performance variation. Random jitter must be confined to the nonvalue axis, and huge samples quickly become overplotted. Choose a histogram or boxplot when the sample is too large for faithful individual dots.",
+        "sources": [
+          {
+            "title": "Wilke — Boxplots, violins, and distributions",
+            "url": "https://clauswilke.com/dataviz/boxplots-violins.html"
+          },
+          {
+            "title": "Wilke — Visualizing amounts",
+            "url": "https://clauswilke.com/dataviz/visualizing-amounts.html"
+          }
+        ]
+      },
+      "historicalDataPattern": "individual_observations"
     },
     {
       "id": "density",
@@ -245,7 +685,27 @@
       "editorialExample": "Server power-draw profiles across a fleet",
       "caution": "Smoothing is not raw observations.",
       "illustration": "atlas/examples/23-density.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Probability-density curves arose from mathematical distribution modeling and became a common visual complement to histograms.",
+        "mathematics": "Kernel density estimation sums local smoothing kernels around observations; bandwidth controls the final curve's apparent detail.",
+        "dataRequirements": "Require a reasonably sized continuous numeric sample and clear treatment of boundaries and weights.",
+        "modernInterpretation": "Modern analysts compare server power distributions, latency profiles, and variability among hardware cohorts with these curves.",
+        "interpretiveRisks": "Smoothed tails can extend into physically impossible values and may conceal rare observations crucial for engineering decisions.",
+        "chartComparison": "Choose histograms for directly observable bin counts or empirical cumulative curves when avoiding smoothing assumptions is important.",
+        "paragraph": "Probability-density curves arose from mathematical distribution modeling and became a common visual complement to histograms. Kernel density estimation sums local smoothing kernels around observations; bandwidth controls the final curve's apparent detail. Require a reasonably sized continuous numeric sample and clear treatment of boundaries and weights. Modern analysts compare server power distributions, latency profiles, and variability among hardware cohorts with these curves. Smoothed tails can extend into physically impossible values and may conceal rare observations crucial for engineering decisions. Choose histograms for directly observable bin counts or empirical cumulative curves when avoiding smoothing assumptions is important.",
+        "sources": [
+          {
+            "title": "Wilke — Histograms and density plots",
+            "url": "https://clauswilke.com/dataviz/histograms-density-plots.html"
+          },
+          {
+            "title": "NIST — Exploratory Data Analysis handbook",
+            "url": "https://www.nist.gov/publications/nistsematech-e-handbook-statistical-methods-chapter-1-exploratory-data-analysis"
+          }
+        ]
+      },
+      "historicalDataPattern": "continuous_sample"
     },
     {
       "id": "scatter",
@@ -255,7 +715,27 @@
       "editorialExample": "ASIC J/TH versus device hashrate",
       "caution": "Correlation alone does not prove causation.",
       "illustration": "atlas/examples/24-scatter.svg",
-      "autoRenderable": true
+      "autoRenderable": true,
+      "textbook": {
+        "history": "Paired-coordinate plots supported nineteenth-century studies of empirical association and Francis Galton's work on regression and correlation.",
+        "mathematics": "Every point represents one paired observation on two quantitative axes so patterns, clusters, and anomalies remain visible.",
+        "dataRequirements": "Require meaningful matched X–Y measurements; a computed fit should be labeled separately from the observed points.",
+        "modernInterpretation": "Modern studies compare ASIC efficiency with hashrate, rack power with temperature, or electricity cost with output.",
+        "interpretiveRisks": "A visual trend alone does not establish causality and a third variable can create a spurious association.",
+        "chartComparison": "Choose a time series when one axis is intrinsically temporal or a hexbin map when dense observations overlap.",
+        "paragraph": "Paired-coordinate plots supported nineteenth-century studies of empirical association and Francis Galton's work on regression and correlation. Every point represents one paired observation on two quantitative axes so patterns, clusters, and anomalies remain visible. Require meaningful matched X–Y measurements; a computed fit should be labeled separately from the observed points. Modern studies compare ASIC efficiency with hashrate, rack power with temperature, or electricity cost with output. A visual trend alone does not establish causality and a third variable can create a spurious association. Choose a time series when one axis is intrinsically temporal or a hexbin map when dense observations overlap.",
+        "sources": [
+          {
+            "title": "Friendly & Denis — Early origins of the scatterplot",
+            "url": "https://onlinelibrary.wiley.com/doi/10.1002/jhbs.20078"
+          },
+          {
+            "title": "Wilke — Directory of visualizations",
+            "url": "https://clauswilke.com/dataviz/directory-of-visualizations.html"
+          }
+        ]
+      },
+      "historicalDataPattern": "paired_numeric"
     },
     {
       "id": "bubble",
@@ -265,7 +745,27 @@
       "editorialExample": "Robot cost, throughput, and fleet size",
       "caution": "Circle area—not radius—must represent size.",
       "illustration": "atlas/examples/25-bubble.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Bubble charts extend scatterplots by introducing a third quantitative dimension, an approach used in multivariate exploratory graphics.",
+        "mathematics": "Position encodes two values, while the area of each circle represents a third nonnegative magnitude.",
+        "dataRequirements": "Require matched X and Y measurements, a nonnegative size variable, and a defensible area-scaling legend.",
+        "modernInterpretation": "Modern comparisons place robotics cost against throughput while using fleet size or shipment volume as bubble area.",
+        "interpretiveRisks": "Scaling radius directly to the size value exaggerates large observations because visible area grows with radius squared.",
+        "chartComparison": "Choose a scatterplot when the third variable adds little analytical value or a faceted plot when sizes overlap heavily.",
+        "paragraph": "Bubble charts extend scatterplots by introducing a third quantitative dimension, an approach used in multivariate exploratory graphics. Position encodes two values, while the area of each circle represents a third nonnegative magnitude. Require matched X and Y measurements, a nonnegative size variable, and a defensible area-scaling legend. Modern comparisons place robotics cost against throughput while using fleet size or shipment volume as bubble area. Scaling radius directly to the size value exaggerates large observations because visible area grows with radius squared. Choose a scatterplot when the third variable adds little analytical value or a faceted plot when sizes overlap heavily.",
+        "sources": [
+          {
+            "title": "Wilke — Directory of visualizations",
+            "url": "https://clauswilke.com/dataviz/directory-of-visualizations.html"
+          },
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          }
+        ]
+      },
+      "historicalDataPattern": "paired_numeric_size"
     },
     {
       "id": "heatmap",
@@ -275,7 +775,27 @@
       "editorialExample": "Server temperature by rack and time",
       "caution": "Use a legend with meaningful units.",
       "illustration": "atlas/examples/26-heatmap.svg",
-      "autoRenderable": true
+      "autoRenderable": true,
+      "textbook": {
+        "history": "Matrix shading extends cross-tabulation, where patterns in two-dimensional arrays mattered more than individually enumerating every cell.",
+        "mathematics": "Rows and columns define ordered or categorical coordinates, while a calibrated color scale encodes a measured cell value.",
+        "dataRequirements": "Require genuine paired dimensions with compatible repeated observations and a clear aggregation rule for duplicate cells.",
+        "modernInterpretation": "Modern engineering uses heatmaps for rack-by-hour temperature, grid load by region and month, or network incident matrices.",
+        "interpretiveRisks": "Perceptually uneven colors, missing-value confusion, and omitted legends can create false gradients or invented data.",
+        "chartComparison": "Choose grouped bars for a few precise comparisons or a scatterplot when both axes are continuous measurements.",
+        "paragraph": "Matrix shading extends cross-tabulation, where patterns in two-dimensional arrays mattered more than individually enumerating every cell. Rows and columns define ordered or categorical coordinates, while a calibrated color scale encodes a measured cell value. Require genuine paired dimensions with compatible repeated observations and a clear aggregation rule for duplicate cells. Modern engineering uses heatmaps for rack-by-hour temperature, grid load by region and month, or network incident matrices. Perceptually uneven colors, missing-value confusion, and omitted legends can create false gradients or invented data. Choose grouped bars for a few precise comparisons or a scatterplot when both axes are continuous measurements.",
+        "sources": [
+          {
+            "title": "Wilke — Visualizing amounts",
+            "url": "https://clauswilke.com/dataviz/visualizing-amounts.html"
+          },
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          }
+        ]
+      },
+      "historicalDataPattern": "matrix_values"
     },
     {
       "id": "hexbin",
@@ -285,7 +805,27 @@
       "editorialExample": "Millions of data center telemetry samples",
       "caution": "Hexagon counts depend on spatial bin size.",
       "illustration": "atlas/examples/27-hexbin.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Hexagonal binning extends density estimation and cartographic tessellation to large paired datasets whose points overplot.",
+        "mathematics": "The X–Y plane is partitioned into hexagonal cells, with color or height indicating the count or aggregated value in each.",
+        "dataRequirements": "Require many paired numeric observations with continuous axes and a declared bin size and aggregation statistic.",
+        "modernInterpretation": "Modern systems use hexbin maps for dense telemetry clouds or millions of transaction and performance measurements.",
+        "interpretiveRisks": "Cell size controls apparent clusters, and a count map is not a map of means unless the statistic is explicitly changed.",
+        "chartComparison": "Choose raw scatterplots when individual observations remain legible or heatmaps for pre-defined categorical matrices.",
+        "paragraph": "Hexagonal binning extends density estimation and cartographic tessellation to large paired datasets whose points overplot. The X–Y plane is partitioned into hexagonal cells, with color or height indicating the count or aggregated value in each. Require many paired numeric observations with continuous axes and a declared bin size and aggregation statistic. Modern systems use hexbin maps for dense telemetry clouds or millions of transaction and performance measurements. Cell size controls apparent clusters, and a count map is not a map of means unless the statistic is explicitly changed. Choose raw scatterplots when individual observations remain legible or heatmaps for pre-defined categorical matrices.",
+        "sources": [
+          {
+            "title": "Wilke — Directory of visualizations",
+            "url": "https://clauswilke.com/dataviz/directory-of-visualizations.html"
+          },
+          {
+            "title": "NIST — Exploratory Data Analysis handbook",
+            "url": "https://www.nist.gov/publications/nistsematech-e-handbook-statistical-methods-chapter-1-exploratory-data-analysis"
+          }
+        ]
+      },
+      "historicalDataPattern": "dense_paired_numeric"
     },
     {
       "id": "donut",
@@ -295,7 +835,27 @@
       "editorialExample": "Robotics market revenue by segment",
       "caution": "Shares must sum to the whole; avoid many slices.",
       "illustration": "atlas/examples/28-donut.svg",
-      "autoRenderable": true
+      "autoRenderable": true,
+      "textbook": {
+        "history": "William Playfair's early nineteenth-century pie diagram established part-to-whole reasoning; donut variants retain that proportional geometry.",
+        "mathematics": "Each sector subtends an angle proportional to its nonnegative share of a single defined total.",
+        "dataRequirements": "Require mutually exclusive categories, a common denominator, and only a few proportions that genuinely sum to the whole.",
+        "modernInterpretation": "Modern examples include robotics-market revenue shares and technology adoption fractions in a defined hardware fleet.",
+        "interpretiveRisks": "Thin slices are difficult to compare and a donut hole adds no new numeric variable by itself.",
+        "chartComparison": "Choose sorted bars when exact category ranking matters, or 100-percent stacked bars to compare multiple populations.",
+        "paragraph": "William Playfair's early nineteenth-century pie diagram established part-to-whole reasoning; donut variants retain that proportional geometry. Each sector subtends an angle proportional to its nonnegative share of a single defined total. Require mutually exclusive categories, a common denominator, and only a few proportions that genuinely sum to the whole. Modern examples include robotics-market revenue shares and technology adoption fractions in a defined hardware fleet. Thin slices are difficult to compare and a donut hole adds no new numeric variable by itself. Choose sorted bars when exact category ranking matters, or 100-percent stacked bars to compare multiple populations.",
+        "sources": [
+          {
+            "title": "Mathematical Association of America — History of statistical graphs",
+            "url": "https://old.maa.org/press/periodicals/convergence/seeing-and-understanding-data-a-mini-primary-source-project-for-students-of-statistics?device=mobile"
+          },
+          {
+            "title": "Wilke — Visualizing proportions",
+            "url": "https://clauswilke.com/dataviz/visualizing-proportions.html"
+          }
+        ]
+      },
+      "historicalDataPattern": "single_composition"
     },
     {
       "id": "treemap",
@@ -305,7 +865,27 @@
       "editorialExample": "Semiconductor revenue by product family",
       "caution": "Area labels must match the same denominator.",
       "illustration": "atlas/examples/29-treemap.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Treemaps modernized the long tradition of hierarchical tables by encoding nested totals as recursively partitioned rectangles.",
+        "mathematics": "The area of each leaf rectangle is proportional to its nonnegative value within a hierarchy whose parent totals reconcile.",
+        "dataRequirements": "Require a tree of distinct parent–child groups with additive measurements and no double-counted leaves.",
+        "modernInterpretation": "Modern analysts inspect semiconductor revenue by product family or data-center costs by subsystem and vendor.",
+        "interpretiveRisks": "Comparing nonadjacent rectangle areas is difficult, and shallow labels can conceal tiny but important categories.",
+        "chartComparison": "Choose a sunburst for exploring hierarchy depth or a ranked bar chart when exact leaf comparisons are the goal.",
+        "paragraph": "Treemaps modernized the long tradition of hierarchical tables by encoding nested totals as recursively partitioned rectangles. The area of each leaf rectangle is proportional to its nonnegative value within a hierarchy whose parent totals reconcile. Require a tree of distinct parent–child groups with additive measurements and no double-counted leaves. Modern analysts inspect semiconductor revenue by product family or data-center costs by subsystem and vendor. Comparing nonadjacent rectangle areas is difficult, and shallow labels can conceal tiny but important categories. Choose a sunburst for exploring hierarchy depth or a ranked bar chart when exact leaf comparisons are the goal.",
+        "sources": [
+          {
+            "title": "Wilke — Nested proportions",
+            "url": "https://clauswilke.com/dataviz/nested-proportions.html"
+          },
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          }
+        ]
+      },
+      "historicalDataPattern": "hierarchical_additive"
     },
     {
       "id": "waffle",
@@ -315,7 +895,27 @@
       "editorialExample": "Share of a factory fleet with upgraded ASICs",
       "caution": "Define rounding and total number of cells.",
       "illustration": "atlas/examples/30-waffle.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Waffle charts translate elementary fraction diagrams into a fixed grid of equal-area cells, commonly used for percentage communication.",
+        "mathematics": "Every cell corresponds to a constant fraction of a whole, and color assigns that fraction to one category.",
+        "dataRequirements": "Require one nonnegative compositional total and a declared grid resolution and rounding approach.",
+        "modernInterpretation": "Modern reports use them to depict upgraded ASIC fleet shares or production completion proportions without complex axes.",
+        "interpretiveRisks": "Rounding can make small groups disappear and a partial grid can misstate the denominator.",
+        "chartComparison": "Choose a donut for a few simple fractions or a 100-percent stacked bar for comparisons across several groups.",
+        "paragraph": "Waffle charts translate elementary fraction diagrams into a fixed grid of equal-area cells, commonly used for percentage communication. Every cell corresponds to a constant fraction of a whole, and color assigns that fraction to one category. Require one nonnegative compositional total and a declared grid resolution and rounding approach. Modern reports use them to depict upgraded ASIC fleet shares or production completion proportions without complex axes. Rounding can make small groups disappear and a partial grid can misstate the denominator. Choose a donut for a few simple fractions or a 100-percent stacked bar for comparisons across several groups.",
+        "sources": [
+          {
+            "title": "Wilke — Visualizing proportions",
+            "url": "https://clauswilke.com/dataviz/visualizing-proportions.html"
+          },
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          }
+        ]
+      },
+      "historicalDataPattern": "single_composition"
     },
     {
       "id": "sunburst",
@@ -325,7 +925,27 @@
       "editorialExample": "Data center spend: category → subsystem",
       "caution": "Too many levels make labels unreadable.",
       "illustration": "atlas/examples/31-sunburst.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Radial partition diagrams extend hierarchical taxonomies and early tree diagrams into rings of proportional angular sectors.",
+        "mathematics": "Each child inherits angular space from its parent, and ring depth represents successive categorical levels.",
+        "dataRequirements": "Require a true hierarchy with additive nonnegative leaf values and explicitly defined parent–child relations.",
+        "modernInterpretation": "Modern use includes drilling from data-center capital expenditure into facilities, subsystems, and individual equipment types.",
+        "interpretiveRisks": "Thin outer segments lose labels and near-equal arc lengths are difficult to compare quantitatively.",
+        "chartComparison": "Choose a treemap for area-efficient nested totals or a simple bar chart for a single hierarchy level.",
+        "paragraph": "Radial partition diagrams extend hierarchical taxonomies and early tree diagrams into rings of proportional angular sectors. Each child inherits angular space from its parent, and ring depth represents successive categorical levels. Require a true hierarchy with additive nonnegative leaf values and explicitly defined parent–child relations. Modern use includes drilling from data-center capital expenditure into facilities, subsystems, and individual equipment types. Thin outer segments lose labels and near-equal arc lengths are difficult to compare quantitatively. Choose a treemap for area-efficient nested totals or a simple bar chart for a single hierarchy level.",
+        "sources": [
+          {
+            "title": "Wilke — Nested proportions",
+            "url": "https://clauswilke.com/dataviz/nested-proportions.html"
+          },
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          }
+        ]
+      },
+      "historicalDataPattern": "hierarchical_additive"
     },
     {
       "id": "sankey",
@@ -335,7 +955,27 @@
       "editorialExample": "Electricity production → losses → IT load",
       "caution": "Flow values must conserve quantity.",
       "illustration": "atlas/examples/32-sankey.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Sankey-style flow maps gained prominence with nineteenth-century engineering energy balances and quantitative accounts of material transfer.",
+        "mathematics": "Link width is proportional to flow magnitude, while incoming and outgoing quantities are reconciled at each node.",
+        "dataRequirements": "Require named origin and destination stages, nonnegative link magnitudes, and explicit treatment of losses or external inputs.",
+        "modernInterpretation": "Modern models depict electricity supply through conversion losses and distribution to cooling and IT workloads.",
+        "interpretiveRisks": "Do not interpret a diagram of unrelated categories as a conserved flow, and avoid false precision in uncertain links.",
+        "chartComparison": "Choose stacked bars for static composition or a network diagram without variable-width links when quantities are unavailable.",
+        "paragraph": "Sankey-style flow maps gained prominence with nineteenth-century engineering energy balances and quantitative accounts of material transfer. Link width is proportional to flow magnitude, while incoming and outgoing quantities are reconciled at each node. Require named origin and destination stages, nonnegative link magnitudes, and explicit treatment of losses or external inputs. Modern models depict electricity supply through conversion losses and distribution to cooling and IT workloads. Do not interpret a diagram of unrelated categories as a conserved flow, and avoid false precision in uncertain links. Choose stacked bars for static composition or a network diagram without variable-width links when quantities are unavailable.",
+        "sources": [
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          },
+          {
+            "title": "Wilke — Nested proportions",
+            "url": "https://clauswilke.com/dataviz/nested-proportions.html"
+          }
+        ]
+      },
+      "historicalDataPattern": "conserved_flows"
     },
     {
       "id": "funnel",
@@ -345,7 +985,27 @@
       "editorialExample": "Robotics trials → pilots → production",
       "caution": "Only use when populations truly pass sequential stages.",
       "illustration": "atlas/examples/33-funnel.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Funnel diagrams adapt sequential accounting and attrition tables into a visual model of a narrowing population.",
+        "mathematics": "Counts or percentages represent the same cohort after successive filters, with each downstream stage nested within its predecessor.",
+        "dataRequirements": "Require logically ordered stages, consistent identities or cohorts, and an explicit denominator at every transition.",
+        "modernInterpretation": "Modern teams track robotics prototypes from testing through pilots to deployment, or hardware production yields across checks.",
+        "interpretiveRisks": "Independent stage totals must not be presented as if the same individuals or units necessarily passed through every stage.",
+        "chartComparison": "Choose a bar chart when phases are unrelated, or a Sankey when people can branch, return, or change destinations.",
+        "paragraph": "Funnel diagrams adapt sequential accounting and attrition tables into a visual model of a narrowing population. Counts or percentages represent the same cohort after successive filters, with each downstream stage nested within its predecessor. Require logically ordered stages, consistent identities or cohorts, and an explicit denominator at every transition. Modern teams track robotics prototypes from testing through pilots to deployment, or hardware production yields across checks. Independent stage totals must not be presented as if the same individuals or units necessarily passed through every stage. Choose a bar chart when phases are unrelated, or a Sankey when people can branch, return, or change destinations.",
+        "sources": [
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          },
+          {
+            "title": "Wilke — Visualizing amounts",
+            "url": "https://clauswilke.com/dataviz/visualizing-amounts.html"
+          }
+        ]
+      },
+      "historicalDataPattern": "sequential_cohort"
     },
     {
       "id": "gantt",
@@ -355,7 +1015,27 @@
       "editorialExample": "Datacenter project construction schedules",
       "caution": "Do not label planned dates as completed milestones.",
       "illustration": "atlas/examples/34-gantt.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Gantt schedules developed in industrial project management to relate named activities to start dates, durations, and dependencies.",
+        "mathematics": "Each task occupies an interval on a common time axis, enabling comparison of overlap, sequence, and completion status.",
+        "dataRequirements": "Require task identifiers plus start and end dates, and distinguish planned milestones from observed completion.",
+        "modernInterpretation": "Modern operators use them for data-center construction, power-commissioning phases, and hardware repair work orders.",
+        "interpretiveRisks": "Overlapping bars alone do not prove task dependencies, which must be provided separately if claimed.",
+        "chartComparison": "Choose a timeline for isolated milestones or a line chart when the primary variable is measured performance over time.",
+        "paragraph": "Gantt schedules developed in industrial project management to relate named activities to start dates, durations, and dependencies. Each task occupies an interval on a common time axis, enabling comparison of overlap, sequence, and completion status. Require task identifiers plus start and end dates, and distinguish planned milestones from observed completion. Modern operators use them for data-center construction, power-commissioning phases, and hardware repair work orders. Overlapping bars alone do not prove task dependencies, which must be provided separately if claimed. Choose a timeline for isolated milestones or a line chart when the primary variable is measured performance over time.",
+        "sources": [
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          },
+          {
+            "title": "Wilke — Time-series visualization",
+            "url": "https://clauswilke.com/dataviz/time-series.html"
+          }
+        ]
+      },
+      "historicalDataPattern": "task_intervals"
     },
     {
       "id": "calendar",
@@ -365,7 +1045,27 @@
       "editorialExample": "Data center incidents by calendar day",
       "caution": "Normalize if days have unequal exposure.",
       "illustration": "atlas/examples/35-calendar.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Calendar heatmaps combine historical calendar tables with shading methods used in statistical matrices.",
+        "mathematics": "Each day occupies a stable weekday-by-week grid cell, with intensity encoding count, rate, or a daily summary statistic.",
+        "dataRequirements": "Require verified dates and a daily numeric measurement or event count, aggregated with a declared time zone.",
+        "modernInterpretation": "Modern infrastructure teams use them for daily service incidents, fleet uptime, or energy-demand peaks across months.",
+        "interpretiveRisks": "Different day lengths, missing dates, or variable exposure can make raw daily totals misleading.",
+        "chartComparison": "Choose a line chart for precise trends or a heatmap matrix when the dimensions are not literal calendar dates.",
+        "paragraph": "Calendar heatmaps combine historical calendar tables with shading methods used in statistical matrices. Each day occupies a stable weekday-by-week grid cell, with intensity encoding count, rate, or a daily summary statistic. Require verified dates and a daily numeric measurement or event count, aggregated with a declared time zone. Modern infrastructure teams use them for daily service incidents, fleet uptime, or energy-demand peaks across months. Different day lengths, missing dates, or variable exposure can make raw daily totals misleading. Choose a line chart for precise trends or a heatmap matrix when the dimensions are not literal calendar dates.",
+        "sources": [
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          },
+          {
+            "title": "Wilke — Time-series visualization",
+            "url": "https://clauswilke.com/dataviz/time-series.html"
+          }
+        ]
+      },
+      "historicalDataPattern": "dated_daily_measure"
     },
     {
       "id": "control",
@@ -375,7 +1075,27 @@
       "editorialExample": "Coolant flow variation with control limits",
       "caution": "Use statistical limits, not arbitrary decoration.",
       "illustration": "atlas/examples/36-control.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Walter Shewhart's industrial quality-control tradition established charts that separate routine process variation from potential special causes.",
+        "mathematics": "Measurements are plotted in time order against a center line and statistically calculated upper and lower control limits.",
+        "dataRequirements": "Require a stable measurement process, suitable sampling subgroup, and limits derived from an appropriate historical baseline.",
+        "modernInterpretation": "Modern data centers monitor coolant flow, rack temperatures, and manufacturing yields for changes exceeding expected process noise.",
+        "interpretiveRisks": "Management targets are not control limits, and normal observations outside arbitrary thresholds are not proof of statistical instability.",
+        "chartComparison": "Choose a line chart for descriptive trends or a bullet chart when the question is target attainment rather than process control.",
+        "paragraph": "Walter Shewhart's industrial quality-control tradition established charts that separate routine process variation from potential special causes. Measurements are plotted in time order against a center line and statistically calculated upper and lower control limits. Require a stable measurement process, suitable sampling subgroup, and limits derived from an appropriate historical baseline. Modern data centers monitor coolant flow, rack temperatures, and manufacturing yields for changes exceeding expected process noise. Management targets are not control limits, and normal observations outside arbitrary thresholds are not proof of statistical instability. Choose a line chart for descriptive trends or a bullet chart when the question is target attainment rather than process control.",
+        "sources": [
+          {
+            "title": "ASQ — Statistical control charts",
+            "url": "https://asq.org/quality-resources/control-chart"
+          },
+          {
+            "title": "NIST — Exploratory Data Analysis handbook",
+            "url": "https://www.nist.gov/publications/nistsematech-e-handbook-statistical-methods-chapter-1-exploratory-data-analysis"
+          }
+        ]
+      },
+      "historicalDataPattern": "time_process_baseline"
     },
     {
       "id": "gauge",
@@ -385,7 +1105,27 @@
       "editorialExample": "Live rack utilization percentage",
       "caution": "A single number plus target may be clearer.",
       "illustration": "atlas/examples/37-gauge.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Gauge graphics borrow the visual metaphor of mechanical instrument dials once used to display bounded physical measurements.",
+        "mathematics": "A pointer or filled arc maps a current value onto an explicitly defined minimum-to-maximum interval.",
+        "dataRequirements": "Require a meaningful bounded range, current observation, and optional threshold justified by the measurement context.",
+        "modernInterpretation": "Modern operations interfaces show live rack utilization, memory occupancy, and thermal-headroom status in dashboards.",
+        "interpretiveRisks": "Without stated range and thresholds, a pointer angle implies severity that the underlying measurement may not justify.",
+        "chartComparison": "Choose a bullet chart for comparisons against a target or a simple number when historical context is unnecessary.",
+        "paragraph": "Gauge graphics borrow the visual metaphor of mechanical instrument dials once used to display bounded physical measurements. A pointer or filled arc maps a current value onto an explicitly defined minimum-to-maximum interval. Require a meaningful bounded range, current observation, and optional threshold justified by the measurement context. Modern operations interfaces show live rack utilization, memory occupancy, and thermal-headroom status in dashboards. Without stated range and thresholds, a pointer angle implies severity that the underlying measurement may not justify. Choose a bullet chart for comparisons against a target or a simple number when historical context is unnecessary.",
+        "sources": [
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          },
+          {
+            "title": "Wilke — Visualizing amounts",
+            "url": "https://clauswilke.com/dataviz/visualizing-amounts.html"
+          }
+        ]
+      },
+      "historicalDataPattern": "bounded_current_value"
     },
     {
       "id": "radar",
@@ -395,7 +1135,27 @@
       "editorialExample": "Robot mobility, dexterity, battery, payload",
       "caution": "Normalize dimensions and avoid arbitrary scores.",
       "illustration": "atlas/examples/38-radar.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Radar diagrams adapt multiaxis profile graphics to compare several dimensions about a common center.",
+        "mathematics": "Each spoke is normalized to a declared scale, and polygon vertices indicate a subject's values on those dimensions.",
+        "dataRequirements": "Require a small set of commensurably normalized criteria with explicit directionality and the same axis order for every subject.",
+        "modernInterpretation": "Modern analysts profile robots across mobility, power, payload, and dexterity, or hardware across different benchmark attributes.",
+        "interpretiveRisks": "Polygon area depends on spoke ordering and arbitrary normalization, so it is not an objective composite performance score.",
+        "chartComparison": "Choose grouped bars or a table when exact multidimensional differences are more important than an overall profile.",
+        "paragraph": "Radar diagrams adapt multiaxis profile graphics to compare several dimensions about a common center. Each spoke is normalized to a declared scale, and polygon vertices indicate a subject's values on those dimensions. Require a small set of commensurably normalized criteria with explicit directionality and the same axis order for every subject. Modern analysts profile robots across mobility, power, payload, and dexterity, or hardware across different benchmark attributes. Polygon area depends on spoke ordering and arbitrary normalization, so it is not an objective composite performance score. Choose grouped bars or a table when exact multidimensional differences are more important than an overall profile.",
+        "sources": [
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          },
+          {
+            "title": "Wilke — Directory of visualizations",
+            "url": "https://clauswilke.com/dataviz/directory-of-visualizations.html"
+          }
+        ]
+      },
+      "historicalDataPattern": "normalized_multivariate_profile"
     },
     {
       "id": "choropleth",
@@ -405,7 +1165,27 @@
       "editorialExample": "Regional robot installations per 10,000 workers",
       "caution": "Use rates for fair comparisons between regions.",
       "illustration": "atlas/examples/39-choropleth.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Choropleths continue the thematic cartography tradition of assigning quantitative classifications to geographic administrative regions.",
+        "mathematics": "Each mapped polygon receives a shade based on its linked regional metric, not the arbitrary geographic size of the region.",
+        "dataRequirements": "Require valid polygon identifiers, a joinable regional dataset, and a rate or other normalization when region areas differ.",
+        "modernInterpretation": "Modern readers use them to compare electricity consumption per resident, adoption rates, or workforce density by state.",
+        "interpretiveRisks": "Raw counts can visually overemphasize large regions, and geographic area is not equivalent to statistical population weight.",
+        "chartComparison": "Choose a proportional-symbol map for discrete sites with measured totals or bars when geography adds no analytical context.",
+        "paragraph": "Choropleths continue the thematic cartography tradition of assigning quantitative classifications to geographic administrative regions. Each mapped polygon receives a shade based on its linked regional metric, not the arbitrary geographic size of the region. Require valid polygon identifiers, a joinable regional dataset, and a rate or other normalization when region areas differ. Modern readers use them to compare electricity consumption per resident, adoption rates, or workforce density by state. Raw counts can visually overemphasize large regions, and geographic area is not equivalent to statistical population weight. Choose a proportional-symbol map for discrete sites with measured totals or bars when geography adds no analytical context.",
+        "sources": [
+          {
+            "title": "Wilke — Visualizing geospatial data",
+            "url": "https://clauswilke.com/dataviz/geospatial-data.html"
+          },
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          }
+        ]
+      },
+      "historicalDataPattern": "region_normalized_metric"
     },
     {
       "id": "symbolMap",
@@ -415,7 +1195,123 @@
       "editorialExample": "MW at individual data center project locations",
       "caution": "Use area-scaled symbols and verified coordinates.",
       "illustration": "atlas/examples/40-symbolMap.svg",
-      "autoRenderable": false
+      "autoRenderable": false,
+      "textbook": {
+        "history": "Proportional-symbol mapping extends thematic cartography by placing count- or magnitude-scaled symbols at verified locations.",
+        "mathematics": "Marker position encodes geographic coordinates while marker area represents a nonnegative numeric magnitude.",
+        "dataRequirements": "Require validated latitudes and longitudes, one numeric magnitude per site, and an explicitly documented area-to-value scale.",
+        "modernInterpretation": "Modern maps locate data-center projects, power stations, or energy production sites with measured or proposed MW.",
+        "interpretiveRisks": "Symbol overlap, inaccurate coordinates, and scaling radius instead of area can distort a regional comparison.",
+        "chartComparison": "Choose choropleths for rates defined by regional polygons or ranked bars if exact site values matter most.",
+        "paragraph": "Proportional-symbol mapping extends thematic cartography by placing count- or magnitude-scaled symbols at verified locations. Marker position encodes geographic coordinates while marker area represents a nonnegative numeric magnitude. Require validated latitudes and longitudes, one numeric magnitude per site, and an explicitly documented area-to-value scale. Modern maps locate data-center projects, power stations, or energy production sites with measured or proposed MW. Symbol overlap, inaccurate coordinates, and scaling radius instead of area can distort a regional comparison. Choose choropleths for rates defined by regional polygons or ranked bars if exact site values matter most.",
+        "sources": [
+          {
+            "title": "Wilke — Visualizing geospatial data",
+            "url": "https://clauswilke.com/dataviz/geospatial-data.html"
+          },
+          {
+            "title": "Financial Times — Visual Vocabulary",
+            "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+          }
+        ]
+      },
+      "historicalDataPattern": "site_coordinates_magnitude"
     }
-  ]
+  ],
+  "methodology": {
+    "classification": "historically grounded, human-curated analytical signatures plus modern editorial interpretation",
+    "boundary": "Historical precedent indicates what data questions a chart was designed to represent; it is not a numerical measure of past chart frequency or an ML-trained probability.",
+    "recommendationInputs": [
+      "question/analytical intent",
+      "historically established data relationships",
+      "measured data roles",
+      "cohort/date/total semantics",
+      "modern suitability checks",
+      "ethical and statistical guardrails",
+      "supported rendering availability"
+    ],
+    "textbookSentenceCountPerChart": 6,
+    "primarySources": [
+      {
+        "id": "history",
+        "title": "Mathematical Association of America — History of statistical graphs",
+        "url": "https://old.maa.org/press/periodicals/convergence/seeing-and-understanding-data-a-mini-primary-source-project-for-students-of-statistics?device=mobile"
+      },
+      {
+        "id": "wilke",
+        "title": "Wilke — Fundamentals of Data Visualization (textbook)",
+        "url": "https://clauswilke.com/dataviz/index.html"
+      },
+      {
+        "id": "time",
+        "title": "Wilke — Time-series visualization",
+        "url": "https://clauswilke.com/dataviz/time-series.html"
+      },
+      {
+        "id": "amounts",
+        "title": "Wilke — Visualizing amounts",
+        "url": "https://clauswilke.com/dataviz/visualizing-amounts.html"
+      },
+      {
+        "id": "distrib",
+        "title": "Wilke — Histograms and density plots",
+        "url": "https://clauswilke.com/dataviz/histograms-density-plots.html"
+      },
+      {
+        "id": "many",
+        "title": "Wilke — Boxplots, violins, and distributions",
+        "url": "https://clauswilke.com/dataviz/boxplots-violins.html"
+      },
+      {
+        "id": "assoc",
+        "title": "Wilke — Directory of visualizations",
+        "url": "https://clauswilke.com/dataviz/directory-of-visualizations.html"
+      },
+      {
+        "id": "proportions",
+        "title": "Wilke — Visualizing proportions",
+        "url": "https://clauswilke.com/dataviz/visualizing-proportions.html"
+      },
+      {
+        "id": "nested",
+        "title": "Wilke — Nested proportions",
+        "url": "https://clauswilke.com/dataviz/nested-proportions.html"
+      },
+      {
+        "id": "geo",
+        "title": "Wilke — Visualizing geospatial data",
+        "url": "https://clauswilke.com/dataviz/geospatial-data.html"
+      },
+      {
+        "id": "ft",
+        "title": "Financial Times — Visual Vocabulary",
+        "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md"
+      },
+      {
+        "id": "nist",
+        "title": "NIST — Exploratory Data Analysis handbook",
+        "url": "https://www.nist.gov/publications/nistsematech-e-handbook-statistical-methods-chapter-1-exploratory-data-analysis"
+      },
+      {
+        "id": "tukey",
+        "title": "Kafadar — Boxplot history and method (2026)",
+        "url": "https://wires.onlinelibrary.wiley.com/doi/10.1002/wics.70073"
+      },
+      {
+        "id": "scatterhist",
+        "title": "Friendly & Denis — Early origins of the scatterplot",
+        "url": "https://onlinelibrary.wiley.com/doi/10.1002/jhbs.20078"
+      },
+      {
+        "id": "playfair",
+        "title": "University of York — Nightingale and historical statistical diagrams",
+        "url": "https://www.york.ac.uk/depts/maths/histstat/small.htm"
+      },
+      {
+        "id": "control",
+        "title": "ASQ — Statistical control charts",
+        "url": "https://asq.org/quality-resources/control-chart"
+      }
+    ]
+  }
 }
