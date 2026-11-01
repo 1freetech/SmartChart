@@ -11,8 +11,8 @@ Open `index.html` via a static HTTP server (e.g. `python -m http.server 8000`) o
 ### Features
 - Paste CSV/TSV/JSON, upload CSV/TSV/JSON, or try a sample data set.
 - Detect numeric, categorical, and date columns; change the category/date and value-axis assignments.
-- Explain and rank chart recommendations based on column types, row counts, cardinality, and analytical goal.
-- Draw data-backed bar, line, area, scatter, histogram, donut, heatmap, and grouped/stacked bar charts; download generated SVG.
+- **Evaluate all 40 historically sourced chart styles before selecting**: show every candidate and exclusion, linked mathematical/textbook references, and the top alternatives. Score analytical fit independently of auto-render support.
+- Draw data-backed vertical-first column/bar, line, area, scatter, histogram, donut, heatmap, and grouped/stacked charts; choose horizontal bars for long category labels and retain an orientation control; download generated SVG.
 - Search all 40 atlas formats, see original schematic SVGs and their reporting cautions.
 - Show units and source notes; detect missing or non-numeric cells rather than fabricating data.
 - Preserve the original interactive atlas under `atlas/index.html` and all 40 SVG examples under `atlas/examples/`.
@@ -40,6 +40,10 @@ Requires Node.js 20+ for tests only:
 node --test tests/engine.test.mjs
 python -m http.server 8000
 ```
+
+## Editorial chart selection standard
+
+The [40-chart source matrix and chart selection law](docs/chart-selection-protocol-v2.md) is the required research-first method. Consider all feasible families, document at least three competing forms, and use a table or an external supported renderer when the most accurate graphic is not yet supported by SmartChart. The atlas already includes **two cited chart-method references per style**, but these do not replace sources for the numeric data in any chart.
 
 ## Data visualization rules
 
