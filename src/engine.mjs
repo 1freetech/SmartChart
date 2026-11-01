@@ -1,3 +1,4 @@
+import {historicalSignatureMatch} from "./history-methodology.mjs";
 // SmartChart data engine. No network calls, dependencies, or evaluation of user input.
 const MAX_ROWS = 5000;
 const MAX_COLUMNS = 64;
@@ -199,24 +200,36 @@ export function evaluateChartCandidates(columns, rows, catalog, goal = "auto") {
   // options must remain visible instead of silently collapsing to horizontal bars.
   return catalog.map(chart => {
     const sourceReferences = (chart.textbook?.sources || []).filter(s => /^https:\/\//.test(s.url || ""));
-    const pattern = chart.historicalDataPattern || "unspecified";
     const fit = scoreFor(chart.id);
+    const evidence = historicalSignatureMatch(chart,columns,rows,goal);
     const matchedGoal = !wants.length || wants.includes(chart.family);
-    const score = fit ? Math.max(1, fit + (wants.length ? (matchedGoal ? 28 : -25) : 0)) : 0;
-    const eligible = fit > 0 && sourceReferences.length > 0;
+    // Modern readability and source verification are mandatory, but supported
+    // rendering does not affect fitness. All 40 entries remain in the audit.
+    const eligible = fit>0 && evidence.eligible && sourceReferences.length>0;
+    const rawScore = fit + evidence.bonus +
+      (wants.length ? (matchedGoal ? 28 : -25) : 0);
+    const score = eligible ? Math.max(1,rawScore) : 0;
     const categoryColumn = cats[0];
     const orientation = categoryColumn && (categoryColumn.distinct > 9 ||
       rows.some(row => String(row[categoryColumn.name] ?? "").length > 20))
       ? "horizontal" : "vertical";
-    const gate = !sourceReferences.length ? "Missing verified chart-method references." :
-      !fit ? "Dataset lacks the required data roles for this chart; do not force it." :
-      !matchedGoal ? "Possible shape match, but a different analytical family was requested." :
-      chart.autoRenderable ? "Eligible; SmartChart can render this chart." :
-      "Eligible reference candidate; requires a supported external renderer or manual design.";
-    return {...chart, eligible, score, gate, orientation,
-      sourceReferences, historicalPattern:pattern,
-      rationale: chart.bestFor + " " + whyFor(chart) +
-        " Historical data pattern: " + pattern.replace(/_/g," ") + "."};
+    const gate = !sourceReferences.length ? "Missing cited chart-method references." :
+      !fit ? "Variable types do not fit this chart; do not force the visualization." :
+      !evidence.eligible ? evidence.history :
+      !matchedGoal ? "Mathematically compatible, but another analytical objective was selected." :
+      chart.autoRenderable ? "Mathematically compatible; SmartChart can generate this format." :
+      "Mathematically compatible reference format; data renderer not yet implemented.";
+    const modern = whyFor(chart);
+    return {
+      ...chart,eligible,score,gate,orientation,sourceReferences,
+      historicalPattern:evidence.signature,
+      historicalMatch:evidence.history,modernMatch:evidence.modern,
+      evidenceCautions:evidence.cautions,
+      dataFit:fit,historyBonus:evidence.bonus,goalMatch:matchedGoal,
+      rationale:evidence.eligible ? evidence.history+" "+modern :
+        "Not recommended: "+gate,
+      methodology:"Mathematical signature → historical data-use precedent → analytical objective → modern accuracy/readability"
+    };
   }).sort((a,b)=>b.score-a.score || a.name.localeCompare(b.name));
 }
 
