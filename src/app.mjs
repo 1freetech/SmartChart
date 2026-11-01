@@ -1,7 +1,7 @@
-import {parseTable,inferColumns,recommendCharts,chooseEncoding} from "./engine.mjs";
+import {parseTable,inferColumns,recommendCharts,evaluateChartCandidates,chooseEncoding} from "./engine.mjs";
 import {renderDataChart} from "./chart.mjs";
 const $ = id => document.getElementById(id);
-const state = {catalog:[],families:[],rows:[],columns:[],recommendations:[],selected:null,family:"All",query:""};
+const state = {catalog:[],families:[],rows:[],columns:[],recommendations:[],audit:[],selected:null,family:"All",query:""};
 const SAMPLE = "Month,Hydro_MWh,Wind_MWh,Solar_MWh\n2026-01,80,42,17\n2026-02,84,46,20\n2026-03,79,51,29\n2026-04,89,55,34\n2026-05,94,57,40\n2026-06,91,62,47\n2026-07,102,71,51\n2026-08,106,69,55\n2026-09,100,75,48\n2026-10,112,81,43\n";
 function make(tag, cls, text) {
   const el=document.createElement(tag);
@@ -55,7 +55,7 @@ function updatePreview() {
   const source=$("sourceInput").value.trim();
   try{
     renderDataChart($("chartFrame"),state.rows,state.selected.id,getEnc(),{
-      title:chartTitle,unit,sort:true,
+      title:chartTitle,unit,sort:true,orientation:$("orientationSelect").value,
       subtitle:source ? "Source: "+source.slice(0,95) : "SmartChart · Data from user-supplied table"
     });
     $("downloadBtn").disabled=false;
@@ -69,6 +69,7 @@ function updatePreview() {
 function chooseChart(chart){
   if(!chart.autoRenderable){openDetails(chart);return;}
   state.selected=chart;
+  $("orientationSelect").value=chart.orientation || "vertical";
   $("previewSection").hidden=false;
   $("chartTitle").value=chart.name;
   updateEncoding(chart.id);
@@ -98,6 +99,7 @@ function renderRecommendations(){
     body.append(head);
     body.append(make("span","rec-tag",chart.autoRenderable?"READY TO GENERATE":"ATLAS GUIDE"));
     body.append(make("p","rec-rationale",chart.rationale));
+    body.append(make("p","rec-only","Historical pattern: "+(chart.historicalPattern||"unspecified")+". "+chart.sourceReferences.length+" research sources; "+(chart.orientation==="vertical"?"vertical bars preferred when applicable":"long labels may need horizontal bars")+"."));
     if(!chart.autoRenderable)body.append(make("p","rec-only","View original chart and guidance · Auto-rendering not yet supported"));
     body.append(make("p","rec-caution","Watch out: "+chart.caution));
     card.append(art,body);
@@ -105,10 +107,36 @@ function renderRecommendations(){
     container.append(card);
   });
 }
+function renderAudit(){
+  const holder=$("selectionAudit");
+  holder.replaceChildren();
+  if(!state.audit.length)return;
+  const list=make("ol","evidence-list");
+  state.audit.forEach(chart=>{
+    const li=make("li","evidence-item");
+    const status=chart.eligible?"Candidate":"Excluded";
+    const b=make("strong","",chart.name+" · "+status+" · "+chart.score);
+    li.append(b,make("p","",chart.gate+" "+chart.rationale));
+    const sources=make("p","evidence-sources","Source-backed method: ");
+    chart.sourceReferences.forEach((source,i)=>{
+      const a=make("a","",source.title || "Research source "+(i+1));
+      if(!/^https:\/\//.test(source.url))return;
+      a.href=source.url;a.target="_blank";a.rel="noopener noreferrer";
+      sources.append(a);
+      if(i<chart.sourceReferences.length-1)sources.append(document.createTextNode(" · "));
+    });
+    if(!chart.sourceReferences.length)sources.append(document.createTextNode("none — not eligible"));
+    li.append(sources);
+    list.append(li);
+  });
+  holder.append(list);
+}
 function rerank(){
   if(!state.rows.length)return;
+  state.audit=evaluateChartCandidates(state.columns,state.rows,state.catalog,$("goalSelect").value);
   state.recommendations=recommendCharts(state.columns,state.rows,state.catalog,$("goalSelect").value);
   renderRecommendations();
+  renderAudit();
 }
 function analyze(){
   clearNotices();
@@ -133,10 +161,20 @@ function openDetails(chart){
   body.append(make("h2","dialog-title",chart.name));
   const artwork=make("div","dialog-art"),pic=make("img");
   pic.src=imageUrl(chart);pic.alt="Schematic "+chart.name;artwork.append(pic);body.append(artwork);
-  for(const [name,text] of [["Best for",chart.bestFor],["Editorial example",chart.editorialExample],["Caution",chart.caution]]){
+  for(const [name,text] of [["Best for",chart.bestFor],["Historical mathematical use",chart.textbook?.history||"No history recorded"],["How it encodes data",chart.textbook?.mathematics||"No method recorded"],["Data requirements",chart.textbook?.dataRequirements||chart.bestFor],["Modern interpretation",chart.textbook?.modernInterpretation||""],["Compare alternatives",chart.textbook?.chartComparison||""],["Editorial example",chart.editorialExample],["Caution",chart.caution]]){
     const p=make("p","dialog-text");const strong=make("strong","",name+": ");p.append(strong,document.createTextNode(text));body.append(p);
   }
   body.append(make("p","dialog-text",chart.autoRenderable?"This format can be generated from a compatible dataset using Chart Studio.":"This format is included in the complete Atlas, but automatic data rendering is not yet implemented."));
+  const sourced=make("div","source-links");
+  sourced.append(make("strong","","Historical / textbook references:"));
+  for(const ref of chart.textbook?.sources || []){
+    if(!/^https:\/\//.test(ref.url))continue;
+    const p=make("p","dialog-text");
+    const a=make("a","",ref.title||ref.url);
+    a.href=ref.url;a.target="_blank";a.rel="noopener noreferrer";
+    p.append(a);sourced.append(p);
+  }
+  body.append(sourced);
   if(chart.autoRenderable && state.rows.length){
     const btn=make("button","btn primary","Use with my data");
     btn.type="button";btn.addEventListener("click",()=>{$("atlasDialog").close();chooseChart(chart);$("previewSection").scrollIntoView({behavior:"smooth",block:"start"});});
@@ -191,7 +229,7 @@ async function init(){
     e.target.value="";
   });
   $("goalSelect").addEventListener("change",rerank);
-  ["xSelect","ySelect","zSelect","chartTitle","unitInput","sourceInput"].forEach(id=>$(id).addEventListener("change",updatePreview));
+  ["xSelect","ySelect","zSelect","chartTitle","unitInput","sourceInput","orientationSelect"].forEach(id=>$(id).addEventListener("change",updatePreview));
   $("refreshBtn").addEventListener("click",updatePreview);
   $("downloadBtn").addEventListener("click",download);
   $("atlasSearch").addEventListener("input",e=>{state.query=e.target.value.toLowerCase();renderAtlas();});
