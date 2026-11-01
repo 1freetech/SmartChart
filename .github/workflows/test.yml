@@ -1,0 +1,20 @@
+name: SmartChart tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run unit tests
+        run: node --test tests/engine.test.mjs
+      - name: Verify migrated Chart Atlas illustrations
+        run: |
+          test "$(find atlas/examples -maxdepth 1 -name '*.svg' | wc -l)" -eq 40
+          test -s atlas/index.html
+          test -s atlas/catalog.json
