@@ -182,7 +182,7 @@ function download(){
 }
 async function init(){
   $("analyzeBtn").addEventListener("click",analyze);
-  $("sampleBtn").addEventListener("click",()=>{$("dataInput").value=SAMPLE;analyze();});
+  $("sampleBtn").addEventListener("click",()=>{ $("dataInput").value=SAMPLE; analyze(); $("chartTitle").value="Synthetic energy generation trends (demo)"; $("sourceInput").value="Synthetic demonstration data — not actual measurements"; updatePreview(); setNotice("inputSuccess","Sample loaded: these figures are synthetic illustrations, not measured energy production."); });
   $("uploadInput").addEventListener("change",async e=>{
     const file=e.target.files?.[0];if(!file)return;
     if(file.size>1200000){setNotice("inputError","Choose a file smaller than 1.2 MB.");return;}
