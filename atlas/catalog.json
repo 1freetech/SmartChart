@@ -1,0 +1,421 @@
+{
+  "version": "1.0.0",
+  "source": {
+    "repository": "1freetech/Bitcoinversus.tech",
+    "path": "editorial/chart-atlas/",
+    "url": "https://github.com/1freetech/Bitcoinversus.tech/tree/main/editorial/chart-atlas",
+    "note": "Illustrations are synthetic; not reported measurements."
+  },
+  "families": [
+    "Trends",
+    "Comparisons",
+    "Distributions",
+    "Relationships",
+    "Composition",
+    "Flows",
+    "Operations",
+    "Geography"
+  ],
+  "charts": [
+    {
+      "id": "line",
+      "name": "Line chart",
+      "family": "Trends",
+      "bestFor": "Values changing over continuous time",
+      "editorialExample": "ASIC efficiency (J/TH), 2000–2026",
+      "caution": "Use real observation dates; label missing periods.",
+      "illustration": "atlas/examples/01-line.svg",
+      "autoRenderable": true
+    },
+    {
+      "id": "area",
+      "name": "Area chart",
+      "family": "Trends",
+      "bestFor": "Cumulative magnitude over time",
+      "editorialExample": "Total installed industrial robot capacity",
+      "caution": "Avoid if overlapping series obscure each other.",
+      "illustration": "atlas/examples/02-area.svg",
+      "autoRenderable": true
+    },
+    {
+      "id": "stackedArea",
+      "name": "Stacked area",
+      "family": "Trends",
+      "bestFor": "How component totals change over time",
+      "editorialExample": "Global electricity generation by source",
+      "caution": "Absolute amounts and shares answer different questions.",
+      "illustration": "atlas/examples/03-stackedArea.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "step",
+      "name": "Step chart",
+      "family": "Trends",
+      "bestFor": "Values that change at discrete events",
+      "editorialExample": "Bitcoin block subsidies after halvings",
+      "caution": "Do not interpolate gradual change between steps.",
+      "illustration": "atlas/examples/04-step.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "candlestick",
+      "name": "Candlestick",
+      "family": "Trends",
+      "bestFor": "Open, high, low, close per interval",
+      "editorialExample": "Bitcoin daily OHLC trading ranges",
+      "caution": "Price candles do not show transaction volume.",
+      "illustration": "atlas/examples/05-candlestick.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "spark",
+      "name": "Sparkline",
+      "family": "Trends",
+      "bestFor": "Compact direction within KPI tables",
+      "editorialExample": "30-day miner uptime in equipment tables",
+      "caution": "Pair with a clear metric, unit, and time window.",
+      "illustration": "atlas/examples/06-spark.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "slope",
+      "name": "Slopegraph",
+      "family": "Trends",
+      "bestFor": "Before/after change across a few categories",
+      "editorialExample": "Site power draw before and after upgrades",
+      "caution": "Two endpoints cannot prove what happened between.",
+      "illustration": "atlas/examples/07-slope.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "bump",
+      "name": "Bump chart",
+      "family": "Trends",
+      "bestFor": "Rank positions as they change over time",
+      "editorialExample": "Top GPU vendors by yearly shipment rank",
+      "caution": "Show rank, not absolute share, on the vertical axis.",
+      "illustration": "atlas/examples/08-bump.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "bars",
+      "name": "Horizontal / vertical bar",
+      "family": "Comparisons",
+      "bestFor": "Categorical value comparison",
+      "editorialExample": "Largest data center projects by MW",
+      "caution": "Start the value axis at zero for ordinary bars.",
+      "illustration": "atlas/examples/09-bars.svg",
+      "autoRenderable": true
+    },
+    {
+      "id": "groupedBars",
+      "name": "Grouped bars",
+      "family": "Comparisons",
+      "bestFor": "Side-by-side cohorts within each category",
+      "editorialExample": "Proposed versus operating MW by state",
+      "caution": "Too many group members become unreadable.",
+      "illustration": "atlas/examples/10-groupedBars.svg",
+      "autoRenderable": true
+    },
+    {
+      "id": "stackedBars",
+      "name": "Stacked bars",
+      "family": "Comparisons",
+      "bestFor": "Totals and their component shares",
+      "editorialExample": "AI server bill of materials by supplier",
+      "caution": "Internal components are hard to compare across bars.",
+      "illustration": "atlas/examples/11-stackedBars.svg",
+      "autoRenderable": true
+    },
+    {
+      "id": "percentBars",
+      "name": "100% stacked bars",
+      "family": "Comparisons",
+      "bestFor": "Compare proportions across categories",
+      "editorialExample": "Energy-source shares by country",
+      "caution": "Does not reveal total underlying market size.",
+      "illustration": "atlas/examples/12-percentBars.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "lollipop",
+      "name": "Lollipop",
+      "family": "Comparisons",
+      "bestFor": "Ranked values in a lightweight format",
+      "editorialExample": "Robotic installations by industry",
+      "caution": "Keep baseline and sorting consistent.",
+      "illustration": "atlas/examples/13-lollipop.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "dumbbell",
+      "name": "Dumbbell",
+      "family": "Comparisons",
+      "bestFor": "Two measurements per category",
+      "editorialExample": "Advertised versus measured robot runtime",
+      "caution": "Clearly identify what each endpoint represents.",
+      "illustration": "atlas/examples/14-dumbbell.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "bullet",
+      "name": "Bullet",
+      "family": "Comparisons",
+      "bestFor": "Actual progress against a target",
+      "editorialExample": "Data center utilization versus safe limit",
+      "caution": "Do not bury the target benchmark.",
+      "illustration": "atlas/examples/15-bullet.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "waterfall",
+      "name": "Waterfall",
+      "family": "Comparisons",
+      "bestFor": "How positive and negative changes build a total",
+      "editorialExample": "MW added or lost from facility capacity",
+      "caution": "Make start, contributions, and end reconcile.",
+      "illustration": "atlas/examples/16-waterfall.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "pareto",
+      "name": "Pareto",
+      "family": "Comparisons",
+      "bestFor": "Sorted causes plus cumulative share",
+      "editorialExample": "Primary causes of ASIC downtime",
+      "caution": "Measure causes by the same denominator.",
+      "illustration": "atlas/examples/17-pareto.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "tornado",
+      "name": "Tornado",
+      "family": "Comparisons",
+      "bestFor": "How alternative inputs affect an outcome",
+      "editorialExample": "Robot ROI sensitivity to labor and energy costs",
+      "caution": "State baseline and scenario assumptions.",
+      "illustration": "atlas/examples/18-tornado.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "histogram",
+      "name": "Histogram",
+      "family": "Distributions",
+      "bestFor": "Frequency of numeric ranges",
+      "editorialExample": "Hashboard temperature distributions",
+      "caution": "Bin widths can change the perceived shape.",
+      "illustration": "atlas/examples/19-histogram.svg",
+      "autoRenderable": true
+    },
+    {
+      "id": "boxplot",
+      "name": "Box-and-whisker",
+      "family": "Distributions",
+      "bestFor": "Median, spread, and outliers",
+      "editorialExample": "Technician salaries by experience group",
+      "caution": "State quartile and whisker definitions.",
+      "illustration": "atlas/examples/20-boxplot.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "violin",
+      "name": "Violin",
+      "family": "Distributions",
+      "bestFor": "Shape and concentration of values",
+      "editorialExample": "Distribution of shift-length robot runtimes",
+      "caution": "Needs sufficient observations and a defined scale.",
+      "illustration": "atlas/examples/21-violin.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "dot",
+      "name": "Dot / beeswarm",
+      "family": "Distributions",
+      "bestFor": "Individual observations and clustering",
+      "editorialExample": "Individual miner failures across facilities",
+      "caution": "Avoid jitter that disguises the actual values.",
+      "illustration": "atlas/examples/22-dot.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "density",
+      "name": "Density curve",
+      "family": "Distributions",
+      "bestFor": "Smoothed distribution of measurements",
+      "editorialExample": "Server power-draw profiles across a fleet",
+      "caution": "Smoothing is not raw observations.",
+      "illustration": "atlas/examples/23-density.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "scatter",
+      "name": "Scatter plot",
+      "family": "Relationships",
+      "bestFor": "Association between two numeric variables",
+      "editorialExample": "ASIC J/TH versus device hashrate",
+      "caution": "Correlation alone does not prove causation.",
+      "illustration": "atlas/examples/24-scatter.svg",
+      "autoRenderable": true
+    },
+    {
+      "id": "bubble",
+      "name": "Bubble chart",
+      "family": "Relationships",
+      "bestFor": "Two variables plus a size dimension",
+      "editorialExample": "Robot cost, throughput, and fleet size",
+      "caution": "Circle area—not radius—must represent size.",
+      "illustration": "atlas/examples/25-bubble.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "heatmap",
+      "name": "Heatmap",
+      "family": "Relationships",
+      "bestFor": "Values across two categories or dimensions",
+      "editorialExample": "Server temperature by rack and time",
+      "caution": "Use a legend with meaningful units.",
+      "illustration": "atlas/examples/26-heatmap.svg",
+      "autoRenderable": true
+    },
+    {
+      "id": "hexbin",
+      "name": "Hexbin plot",
+      "family": "Relationships",
+      "bestFor": "Dense point clouds without overplotting",
+      "editorialExample": "Millions of data center telemetry samples",
+      "caution": "Hexagon counts depend on spatial bin size.",
+      "illustration": "atlas/examples/27-hexbin.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "donut",
+      "name": "Pie / donut",
+      "family": "Composition",
+      "bestFor": "A few shares of one complete total",
+      "editorialExample": "Robotics market revenue by segment",
+      "caution": "Shares must sum to the whole; avoid many slices.",
+      "illustration": "atlas/examples/28-donut.svg",
+      "autoRenderable": true
+    },
+    {
+      "id": "treemap",
+      "name": "Treemap",
+      "family": "Composition",
+      "bestFor": "Hierarchical part-to-whole sizes",
+      "editorialExample": "Semiconductor revenue by product family",
+      "caution": "Area labels must match the same denominator.",
+      "illustration": "atlas/examples/29-treemap.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "waffle",
+      "name": "Waffle",
+      "family": "Composition",
+      "bestFor": "Whole-number percentage breakdowns",
+      "editorialExample": "Share of a factory fleet with upgraded ASICs",
+      "caution": "Define rounding and total number of cells.",
+      "illustration": "atlas/examples/30-waffle.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "sunburst",
+      "name": "Sunburst",
+      "family": "Composition",
+      "bestFor": "Nested category hierarchies",
+      "editorialExample": "Data center spend: category → subsystem",
+      "caution": "Too many levels make labels unreadable.",
+      "illustration": "atlas/examples/31-sunburst.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "sankey",
+      "name": "Sankey",
+      "family": "Flows",
+      "bestFor": "Quantities moving between stages",
+      "editorialExample": "Electricity production → losses → IT load",
+      "caution": "Flow values must conserve quantity.",
+      "illustration": "atlas/examples/32-sankey.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "funnel",
+      "name": "Funnel",
+      "family": "Flows",
+      "bestFor": "Attrition through sequential stages",
+      "editorialExample": "Robotics trials → pilots → production",
+      "caution": "Only use when populations truly pass sequential stages.",
+      "illustration": "atlas/examples/33-funnel.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "gantt",
+      "name": "Gantt / timeline",
+      "family": "Operations",
+      "bestFor": "Start, finish, and overlap for activities",
+      "editorialExample": "Datacenter project construction schedules",
+      "caution": "Do not label planned dates as completed milestones.",
+      "illustration": "atlas/examples/34-gantt.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "calendar",
+      "name": "Calendar heatmap",
+      "family": "Operations",
+      "bestFor": "Daily activity over weeks or months",
+      "editorialExample": "Data center incidents by calendar day",
+      "caution": "Normalize if days have unequal exposure.",
+      "illustration": "atlas/examples/35-calendar.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "control",
+      "name": "Control chart",
+      "family": "Operations",
+      "bestFor": "Process stability and abnormal variation",
+      "editorialExample": "Coolant flow variation with control limits",
+      "caution": "Use statistical limits, not arbitrary decoration.",
+      "illustration": "atlas/examples/36-control.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "gauge",
+      "name": "Gauge",
+      "family": "Operations",
+      "bestFor": "Current level against a bounded limit",
+      "editorialExample": "Live rack utilization percentage",
+      "caution": "A single number plus target may be clearer.",
+      "illustration": "atlas/examples/37-gauge.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "radar",
+      "name": "Radar / spider",
+      "family": "Operations",
+      "bestFor": "Multidimensional profiles on common scales",
+      "editorialExample": "Robot mobility, dexterity, battery, payload",
+      "caution": "Normalize dimensions and avoid arbitrary scores.",
+      "illustration": "atlas/examples/38-radar.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "choropleth",
+      "name": "Choropleth map",
+      "family": "Geography",
+      "bestFor": "A value assigned to each region",
+      "editorialExample": "Regional robot installations per 10,000 workers",
+      "caution": "Use rates for fair comparisons between regions.",
+      "illustration": "atlas/examples/39-choropleth.svg",
+      "autoRenderable": false
+    },
+    {
+      "id": "symbolMap",
+      "name": "Proportional-symbol map",
+      "family": "Geography",
+      "bestFor": "Geographic point values and clusters",
+      "editorialExample": "MW at individual data center project locations",
+      "caution": "Use area-scaled symbols and verified coordinates.",
+      "illustration": "atlas/examples/40-symbolMap.svg",
+      "autoRenderable": false
+    }
+  ]
+}
