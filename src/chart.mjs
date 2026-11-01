@@ -59,6 +59,58 @@ function axes(svg, bounds, xLabels, yRange, unit) {
   }
   if(unit) label(svg,l,t-14,unit,{"font-size":12,fill:"#9fb3cf"});
 }
+// Vertical columns are the default for short categorical comparisons.
+// Horizontal bars are reserved for crowded or genuinely long labels.
+function drawVerticalBars(svg,rows,type,encoding,unit,sort=true) {
+  const {x,y,z}=encoding;
+  if(!x||!y)throw new Error("Choose a category and a numeric measure.");
+  if(type!=="bars"&&(!z||z===y))throw new Error("Choose a second distinct measure for grouped or stacked columns.");
+  let values=rows.map(row=>({name:String(row[x]??""),a:numeric(row[y]),b:numeric(row[z])}))
+    .filter(d=>d.name&&d.a!==null&&(type==="bars"||d.b!==null));
+  if(!values.length)throw new Error("No complete numeric rows to plot.");
+  if(type==="bars"&&sort)values.sort((a,b)=>b.a-a.a);
+  values=values.slice(0,12);
+  if(type==="stackedBars"&&values.some(d=>d.a<0||d.b<0))
+    throw new Error("Stacked columns require nonnegative additive components.");
+  const l=88,r=945,t=113,b=433;
+  const samples=values.flatMap(d=>type==="stackedBars"?[0,d.a+d.b]:
+    type==="groupedBars"?[0,d.a,d.b]:[0,d.a]);
+  const low=Math.min(...samples),high=Math.max(...samples);
+  const upper=high===low?high+1:high,lower=high===low?low-1:low;
+  const sy=value=>b-(value-lower)/(upper-lower)*(b-t);
+  const zero=sy(0),band=(r-l)/values.length;
+  for(let i=0;i<=4;i++){
+    const value=lower+(upper-lower)*i/4,yy=sy(value);
+    line(svg,l,yy,r,yy,"#2b3a4f");
+    label(svg,l-10,yy+4,pretty(value),{"text-anchor":"end","font-size":12});
+  }
+  values.forEach((d,i)=>{
+    const center=l+(i+.5)*band;
+    const bw=Math.max(5,Math.min(46,band*.64));
+    const bar=(value,start,xpos,width,color)=>{
+      const y1=sy(value),y0=sy(start);
+      const shape=rect(svg,xpos,Math.min(y0,y1),width,Math.abs(y0-y1),color,2);
+      tooltip(shape,d.name+": "+pretty(value)+(unit?" "+unit:""));
+    };
+    if(type==="bars"){
+      bar(d.a,0,center-bw/2,bw,COLORS[0]);
+      label(svg,center,Math.min(sy(d.a),zero)-8,pretty(d.a),{"text-anchor":"middle","font-size":11});
+    } else if(type==="groupedBars"){
+      bar(d.a,0,center-bw/2,bw/2-2,COLORS[0]);
+      bar(d.b,0,center+2,bw/2-2,COLORS[1]);
+    } else {
+      bar(d.a,0,center-bw/2,bw,COLORS[0]);
+      bar(d.a+d.b,d.a,center-bw/2,bw,COLORS[1]);
+    }
+    label(svg,center,b+21,d.name.length>14?d.name.slice(0,13)+"…":d.name,
+      {"text-anchor":"middle","font-size":Math.max(9,Math.min(12,band*.21))});
+  });
+  label(svg,l,t-15,"Value"+(unit?" ("+unit+")":""),{"font-size":12});
+  if(type!=="bars"){
+    rect(svg,635,76,12,12,COLORS[0],2);label(svg,652,86,y.slice(0,20),{"font-size":11});
+    rect(svg,790,76,12,12,COLORS[1],2);label(svg,807,86,z.slice(0,17),{"font-size":11});
+  }
+}
 function drawBars(svg, rows, type, encoding, unit, sort=true) {
   const x=encoding.x, y=encoding.y, z=encoding.z;
   if (!x || !y) throw new Error("Choose a category and at least one numeric measure.");
@@ -208,7 +260,12 @@ export function renderDataChart(container, rows, type, encoding, options={}) {
   const supported=new Set(["bars","groupedBars","stackedBars","line","area","scatter","histogram","donut","heatmap"]);
   if(!supported.has(type))throw new Error("This specialized chart is an atlas reference only; choose a supported chart to render data.");
   const svg=baseSvg(container,options.title||"Data preview",options.subtitle||"Data-backed preview · Not a schematic atlas image");
-  if(type==="bars"||type==="groupedBars"||type==="stackedBars")drawBars(svg,rows,type,encoding,options.unit||"",options.sort!==false);
+  if(type==="bars"||type==="groupedBars"||type==="stackedBars") {
+    const labels=rows.map(r=>String(r[encoding.x]??""));
+    const orientation=options.orientation || (labels.length>9||labels.some(l=>l.length>20)?"horizontal":"vertical");
+    if(orientation==="vertical")drawVerticalBars(svg,rows,type,encoding,options.unit||"",options.sort!==false);
+    else drawBars(svg,rows,type,encoding,options.unit||"",options.sort!==false);
+  }
   else if(type==="line"||type==="area")drawTrend(svg,rows,encoding,options.unit||"",type);
   else if(type==="scatter")drawScatter(svg,rows,encoding,options.unit||"");
   else if(type==="histogram")drawHistogram(svg,rows,encoding,options.unit||"");
