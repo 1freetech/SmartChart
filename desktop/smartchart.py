@@ -287,6 +287,7 @@ class SmartChartApp(tk.Tk):
         self.y_combo.bind("<<ComboboxSelected>>", lambda _e: self.draw())
         self.canvas = tk.Canvas(studio, bg="white", height=520)
         self.canvas.pack(fill="both", expand=True)
+        self.canvas.bind("<Configure>", lambda _event: self.draw())
         bottom = ttk.Panedwindow(studio, orient="horizontal")
         bottom.pack(fill="both", expand=False)
         self.raw = tk.Text(bottom, wrap="none", height=9, width=62)
@@ -348,8 +349,9 @@ class SmartChartApp(tk.Tk):
             self.names, self.rows = names, rows
             self.x_combo["values"] = names
             self.y_combo["values"] = nums
-            self.xaxis.set(next((n for n in names if n not in nums), names[0]))
-            self.yaxis.set(nums[0])
+            x_choice = next((n for n in names if n not in nums), names[0])
+            self.xaxis.set(x_choice)
+            self.yaxis.set(next((n for n in nums if n != x_choice), nums[0]))
             ranking = chart_advice(names, rows)
             self.chart.set(ranking[0][0] if ranking else "Bar")
             self.advice.config(state="normal")
