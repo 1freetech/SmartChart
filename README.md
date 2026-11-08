@@ -1,5 +1,12 @@
 # SmartChart
 
+## Python desktop application — downloadable
+
+**New:** SmartChart includes an offline Python/Tkinter desktop program in the style of [Lexicon](https://github.com/1freetech/Lexicon). For Windows, macOS, and Linux executable ZIP downloads, visit [Python desktop build on GitHub Actions](https://github.com/1freetech/SmartChart/actions/workflows/python-desktop.yml), choose the latest **successful** run, and select the OS-specific artifact under **Artifacts**.
+
+To run the source, choose **Code → Download ZIP** for the full repository (including `atlas/`) and run `python desktop/smartchart.py`. The desktop studio supports local dataset import, six Python chart renderers, CSV and SVG export, and browsing the full 40-type atlas. See [Python desktop guide](desktop/README.md) for the current functionality and QA limits. The original browser implementation below remains available.
+
+
 **SmartChart** is a lightweight, browser-based data-to-chart assistant built on the original **BitcoinVersus.Tech Data Visualization Atlas**.
 
 Give SmartChart a CSV, TSV, JSON array, or pasted table; it profiles the columns, recommends suitable visualizations with explanations and editorial cautions, and draws supported chart types using your actual values. You can inspect every one of the 40 original chart designs and their guidance in the bundled atlas.
