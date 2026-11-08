@@ -207,6 +207,16 @@ function filters(){
     bar.append(btn);
   });
 }
+function downloadDataset(){
+  if(!state.rows.length){setNotice("inputError","Analyze a dataset before exporting it.");return;}
+  const headers=state.columns.map(c=>c.name);
+  const csvCell=value=>'"'+String(value??"").replace(/"/g,'""')+'"';
+  const csv=[headers.map(csvCell).join(","),...state.rows.map(row=>headers.map(key=>csvCell(row[key])).join(","))].join("\r\n")+"\r\n";
+  const url=URL.createObjectURL(new Blob(["\ufeff",csv],{type:"text/csv;charset=utf-8"}));
+  const link=document.createElement("a");link.href=url;link.download="smartchart-dataset.csv";
+  document.body.append(link);link.click();link.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
 function download(){
   const chart=$("chartFrame").querySelector("svg");
   if(!chart)return;
@@ -232,6 +242,7 @@ async function init(){
   ["xSelect","ySelect","zSelect","chartTitle","unitInput","sourceInput","orientationSelect"].forEach(id=>$(id).addEventListener("change",updatePreview));
   $("refreshBtn").addEventListener("click",updatePreview);
   $("downloadBtn").addEventListener("click",download);
+  $("downloadDataBtn").addEventListener("click",downloadDataset);
   $("atlasSearch").addEventListener("input",e=>{state.query=e.target.value.toLowerCase();renderAtlas();});
   $("closeDialog").addEventListener("click",()=>$("atlasDialog").close());
   $("atlasDialog").addEventListener("click",e=>{if(e.target===$("atlasDialog"))$("atlasDialog").close();});
