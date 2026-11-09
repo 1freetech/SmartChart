@@ -21,6 +21,8 @@ jobs:
       - name: Install Linux Tk libraries
         if: runner.os == 'Linux'
         run: sudo apt-get update && sudo apt-get install -y python3-tk libx11-6 xvfb xauth
+      - name: Verify embedded catalog is synchronized
+        run: python scripts/sync_catalog.py --check
       - name: Run headless regression tests
         run: python -m unittest discover -s desktop -p "test_*.py" -v
       - name: Test real Tkinter UI under a virtual display

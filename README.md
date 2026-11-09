@@ -2,6 +2,10 @@
 
 SmartChart is an offline **Python 3.12+ / Tkinter** desktop application. The application and automated tests are written in Python; **no Node.js, JavaScript, HTML browser frontend, CSS, or web server is required**. JSON chart metadata and SVG illustrations are retained as data/assets, not executable application code.
 
+## Fixed: standalone script and chart atlas
+
+The full 40-chart catalog is embedded in `desktop/smartchart.py` as an offline fallback. A **single copied Python file now starts even when `atlas/catalog.json` is absent**. When the complete repository is available, its JSON catalog is used as the authoritative source; the embedded catalog is kept in sync using `python scripts/sync_catalog.py`. No network request or JavaScript is involved.
+
 ## Run from source
 
 Download/clone the **entire repository** (including `atlas/`). Python must include Tkinter.
