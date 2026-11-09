@@ -1,12 +1,10 @@
 # BitcoinVersus.Tech Data Visualization Atlas
 
-A downloadable, self-contained interactive reference of **40 chart types**, organized into eight families. The atlas includes local search, category filters, a detail panel, newsroom examples, and common interpretation mistakes.
+The **Python/Tkinter SmartChart application** includes a browsable reference to **40 chart types** across eight families. Each entry has historical methodology, textbook notes, citations, reporting cautions, and illustrative SVG artwork.
 
-## Download and open
+## Open in the Python desktop app
 
-1. [Download the interactive HTML atlas](https://raw.githubusercontent.com/1freetech/Bitcoinversus.tech/main/editorial/chart-atlas/index.html) (save as `bitcoinversus-chart-atlas.html`).
-2. Open the saved file in a modern browser. It runs offline and needs no external libraries.
-3. Click any chart to read its intended use, a BitcoinVersus.Tech example, and a caution about misuse.
+Download the complete SmartChart repository and run `python desktop/smartchart.py`. Select the **40-chart atlas** tab to browse the catalog. No browser, JavaScript, or web server is needed. A historical HTML edition is available in the [original chart-atlas project](https://github.com/1freetech/Bitcoinversus.tech/tree/main/editorial/chart-atlas) but is not part of the Python-only SmartChart runtime.
 
 ## Illustrated guide
 
