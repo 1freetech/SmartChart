@@ -1,6 +1,6 @@
 # SmartChart — Python desktop
 
-Run `python desktop/smartchart.py` from the repository root, with Python 3.12+ and Tkinter installed. Download the complete repository because `atlas/catalog.json` is required. The Python GUI supports CSV/TSV/JSON import or paste, numeric-column inference, six chart renderers (Bar, Line, Area, Scatter, Histogram, Donut), chart preview, CSV and SVG exports, and a browseable 40-chart atlas. No data is sent to a server.
+Run `python desktop/smartchart.py` from the repository root, with Python 3.12+ and Tkinter installed. The full 40-chart atlas is also embedded in the Python script, so copying `desktop/smartchart.py` alone works without `atlas/catalog.json`. Downloading the complete repository remains recommended for the original SVG example illustrations and docs. The Python GUI supports CSV/TSV/JSON import or paste, numeric-column inference, six chart renderers (Bar, Line, Area, Scatter, Histogram, Donut), chart preview, CSV and SVG exports, and a browseable 40-chart atlas. No data is sent to a server.
 
 The original JavaScript/HTML frontend has been retired from this repository. SVG gallery illustrations are static resources, **not runtime frontend code**. The remaining 34 atlas formats are guide/reference entries, and the old JavaScript historical suitability engine has not been ported to Python.
 
