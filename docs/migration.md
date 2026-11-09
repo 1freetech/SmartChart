@@ -1,15 +1,9 @@
-# SmartChart Chart Atlas migration — 2026-11-01
+# Chart Atlas provenance and Python-only migration
 
-Source repository: https://github.com/1freetech/Bitcoinversus.tech/tree/main/editorial/chart-atlas
+Source: https://github.com/1freetech/Bitcoinversus.tech/tree/main/editorial/chart-atlas
 
-All 43 source files are copied unchanged, retaining content-identical Git blobs:
-- 40 example SVG charts at `atlas/examples/`
-- original interactive reference at `atlas/index.html`
-- original atlas README at `atlas/README.md`
-- original editorial capacity example at `atlas/2026/us-data-center-energy-megaprojects-2026.svg`
+SmartChart began by copying the original 40 SVG chart examples, illustrated editorial case study, standalone HTML atlas and references. The historical web files were part of the **initial import only**. As of the Python-only migration, SmartChart no longer carries `atlas/index.html`, root `index.html`, CSS, or JavaScript modules and tests. The original source remains available in the attribution repository and prior Git history.
 
-SmartChart's `atlas/catalog.json` extracts all 40 source entries, across 8 original families, and retains the names, best-use descriptions, reporting examples, cautions and example SVG links.
+The **40 SVG examples**, the `atlas/2026/` graphic, `atlas/catalog.json`, and the chart textbook are preserved. Illustrations are synthetic, not measured data. The energy megaprojects case study compares announced/planned capacities, not homogeneous measured operating load.
 
-**Integrity:** Atlas visuals are schematic synthetic examples, not measured data. The real editorial chart is a 2026 planned-capacity case study mixing planned/announced measures; it must not be presented as a homogeneous operating-load ranking. SmartChart must distinguish actual observations, estimates and forecasts when charting user data.
-
-Original source remains unchanged. Automatic plotting supports a declared subset; specialized charts remain selectable as educational reference, never inaccurately portrayed as generated from the user's data.
+Current Python desktop implementation: `desktop/smartchart.py`. Six types render from user data. Remaining specialist chart types are reference-only; the retired browser engine's 40-style suitability scoring requires a separate Python port. Use primary-source numerical verification before publication.

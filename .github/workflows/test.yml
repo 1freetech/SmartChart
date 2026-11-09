@@ -1,26 +1,23 @@
-name: SmartChart tests
+name: Python-only tests
 on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
+
 jobs:
   checks:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-python@v5
         with:
-          node-version: '22'
-      - name: Run unit tests
-        run: node --test tests/engine.test.mjs
-      - name: Check browser modules for syntax errors
-        run: |
-          node --check src/engine.mjs
-          node --check src/app.mjs
-          node --check src/chart.mjs
-      - name: Verify migrated Chart Atlas illustrations
-        run: |
-          test "$(find atlas/examples -maxdepth 1 -name '*.svg' | wc -l)" -eq 40
-          test -s atlas/index.html
-          test -s atlas/catalog.json
-          test -s docs/chart-selection-protocol-v2.md
+          python-version: '3.12'
+      - name: Install Tkinter
+        run: sudo apt-get update && sudo apt-get install -y python3-tk
+      - name: Run Python application tests
+        run: python -m unittest discover -s desktop -p "test_*.py" -v
+      - name: Validate Python-only source and atlas
+        run: python -m unittest discover -s tests -p "test_*.py" -v
+      - name: Compile Python modules
+        run: python -m compileall -q desktop tests
