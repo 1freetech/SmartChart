@@ -23,6 +23,8 @@ BASIC=[
 def fixture(kind):
     if kind=="Candlestick":
         return ([{"Date":f"2026-11-{i+1:02d}","Open":4+i,"High":7+i,"Low":2+i,"Close":5+i} for i in range(6)],"Date","Open")
+    if kind=="Scatter":
+        return (BASIC,"Second","Value")
     if kind=="Radar":
         return ([{"Category":"Device","A":20,"B":40,"C":60,"D":80}],"Category","A")
     if kind=="Gauge":
