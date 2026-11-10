@@ -114,7 +114,7 @@ def render(rows, x_name, y_name, kind, num, s, width=920, height=550):
     def require(k):
         if len(numeric_fields)<k:
             raise ValueError(kind+" requires at least "+str(k)+" numeric fields")
-    require(NEEDS.get(kind,1))
+    if kind not in ("Gantt","Calendar heatmap","Choropleth map"):\n        require(NEEDS.get(kind,1))
     def pal(i): return COLORS[i%len(COLORS)]
     a=[]
     def put(t,**kw): a.append(s(t,**kw))
@@ -146,7 +146,7 @@ def render(rows, x_name, y_name, kind, num, s, width=920, height=550):
             yy=Y(z);line(L,yy,R,yy,"#e2e8f0",1);txt(L-8,yy,f"{z:.3g}",anchor="end")
         return Y
     def xpos(i,n):return L+(i+.5)*(R-L)/max(n,1)
-    values=series(numeric_fields[0]);n=len(values)
+    values=series(numeric_fields[0]) if numeric_fields else [0.]*len(rows);n=len(rows)
     labels=[str(row.get(x_name,i)) for i,row in enumerate(rows)]
     if kind in ("Step","Sparkline","Control chart","Bump chart","Stacked area"):
         if kind in ("Stacked area","Bump chart"):
