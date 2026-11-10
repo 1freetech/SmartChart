@@ -102,7 +102,7 @@ def render(rows, x_name, y_name, kind, num, s, width=920, height=550):
     nums = [name for name in names if sum(num(r.get(name)) is not None for r in rows) >= max(1,math.ceil(.8*len(rows)))]
     extra = [name for name in nums if name != y_name]
     numeric_fields = [y_name]+extra if y_name in nums else nums
-    if not numeric_fields:
+    if not numeric_fields and kind not in ("Gantt",):
         raise ValueError(kind+" requires numeric values")
     def v(row, field):
         x=num(row.get(field))
@@ -310,8 +310,37 @@ def render(rows, x_name, y_name, kind, num, s, width=920, height=550):
                     [(x+90*d/peak,Y(z)) for z,d in reversed(pts)],"#93c5fd")
     elif kind in ("Bubble","Heatmap","Hexbin","Radar","Proportional-symbol map","Choropleth map"):
         if kind=="Choropleth map":
-            raise ValueError("Choropleth requires actual region polygons; no geographic boundaries bundled. Use a verified GeoJSON map renderer.")
-        if kind=="Proportional-symbol map":
+            geometry=next((f for f in names if f.lower() in ("geometry","geojson","polygon")),None)
+            if geometry is None:
+                raise ValueError("Choropleth requires a GeoJSON geometry column")
+            import json
+            polygons=[]
+            for row in rows:
+                try:
+                    g=row[geometry]
+                    if isinstance(g,str):g=json.loads(g)
+                    if g.get("type")=="Feature":g=g["geometry"]
+                    if g.get("type")=="Polygon": parts=[g["coordinates"]]
+                    elif g.get("type")=="MultiPolygon":parts=g["coordinates"]
+                    else:raise ValueError("Expected Polygon or MultiPolygon")
+                    polygons.append([[[(float(pt[0]),float(pt[1])) for pt in ring] for ring in rings] for rings in parts])
+                except (KeyError,TypeError,IndexError,ValueError) as exc:
+                    raise ValueError("Invalid GeoJSON geometry") from exc
+            pts=[xy for regions in polygons for rings in regions for ring in rings for xy in ring]
+            if not pts:raise ValueError("GeoJSON polygons are empty")
+            minx,maxx=min(x for x,y in pts),max(x for x,y in pts)
+            miny,maxy=min(y for x,y in pts),max(y for x,y in pts)
+            low,high=min(values),max(values)
+            for i,regions in enumerate(polygons):
+                q=(values[i]-low)/(high-low or 1)
+                color=f"#{int(220-180*q):02x}{int(235-125*q):02x}{int(250-40*q):02x}"
+                for rings in regions:
+                    if rings:
+                        poly([(L+(x-minx)/(maxx-minx or 1)*(R-L),
+                               B-(y-miny)/(maxy-miny or 1)*(B-T))
+                              for x,y in rings[0]],color)
+            txt((L+R)/2,B+12,"User-provided GeoJSON geometry",size=9)
+        elif kind=="Proportional-symbol map":
             require(3)
             # Latitude/longitude projection of site coordinates; no political boundaries implied.
             lat=series(numeric_fields[0]);lon=series(numeric_fields[1]);mag=series(numeric_fields[2])
