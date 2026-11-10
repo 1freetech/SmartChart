@@ -114,7 +114,8 @@ def render(rows, x_name, y_name, kind, num, s, width=920, height=550):
     def require(k):
         if len(numeric_fields)<k:
             raise ValueError(kind+" requires at least "+str(k)+" numeric fields")
-    if kind not in ("Gantt","Calendar heatmap","Choropleth map"):\n        require(NEEDS.get(kind,1))
+    if kind not in ("Gantt","Calendar heatmap","Choropleth map"):
+        require(NEEDS.get(kind,1))
     def pal(i): return COLORS[i%len(COLORS)]
     a=[]
     def put(t,**kw): a.append(s(t,**kw))
