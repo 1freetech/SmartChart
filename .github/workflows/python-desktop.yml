@@ -25,7 +25,9 @@ jobs:
         run: python scripts/sync_catalog.py --check
       - name: Run headless regression tests
         run: python -m unittest discover -s desktop -p "test_*.py" -v
-      - name: Run data and catalog integrity regression tests\n        run: python -m unittest discover -s tests -p "test_*.py" -v\n      - name: Test real Tkinter UI under a virtual display
+      - name: Run data and catalog integrity regression tests
+        run: python -m unittest discover -s tests -p "test_*.py" -v
+      - name: Test real Tkinter UI under a virtual display
         if: runner.os == 'Linux'
         run: xvfb-run -a python desktop/gui_smoke.py
       - name: Install standalone packager
