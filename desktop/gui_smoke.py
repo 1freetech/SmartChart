@@ -24,7 +24,7 @@ def main():
             app.analyze()
             app.update()
             assert len(app.rows) == 3, f"{label} import failed"
-            assert "Label" in app.headers and "Value" in app.headers, (
+            assert "Label" in app.names and "Value" in app.names, (
                 f"{label} column headers missing"
             )
         app.chart.set("Donut")
