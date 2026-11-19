@@ -1,0 +1,100 @@
+{
+  "chart_number": 29,
+  "chart_type": "Treemap",
+  "previous_chart": 30,
+  "topic": "NVIDIA FY2027 Q3 market-platform revenue",
+  "story_date": "2026-11-19",
+  "primary_source_date": "2026-11-17",
+  "source_period": "Quarter ended 2026-10-25",
+  "category": [
+    "Semiconductors",
+    "Data Center News",
+    "Business"
+  ],
+  "cover_style": "Photorealistic editorial image",
+  "featured_media_id": 33468,
+  "cover_width": 1200,
+  "cover_height": 630,
+  "wp_post_id": 33473,
+  "published_url": "https://bitcoinversus.tech/2026/11/19/nvidia-fy27-q3-revenue-treemap-hyperscale-enterprise-edge-2026/",
+  "wp_status": "publish",
+  "sources": [
+    "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2027/default.aspx",
+    "https://s201.q4cdn.com/141608511/files/doc_financials/2027/Q327/Rev-by-Mkt-Qtrly-Trend-Q327.pdf",
+    "https://investor.nvidia.com/files/doc_financials/2027/Q327/Supplemental-Financial-Information-NVDA-2027-Q3.pdf"
+  ],
+  "data_millions": {
+    "total": 115844,
+    "data_center_total": 107610,
+    "hyperscale": 60136,
+    "ai_clouds_industrial_enterprise": 47474,
+    "edge_computing": 8234
+  },
+  "source_data_csv": "atlas/2026/nvidia-q3-fy2027-hyperscale-enterprise-edge-treemap-29.csv",
+  "chart_svg": "atlas/2026/nvidia-q3-fy2027-hyperscale-enterprise-edge-treemap-29.svg",
+  "candidate_charts": [
+    {
+      "chart": 29,
+      "type": "Treemap",
+      "decision": "Chosen for additive revenue hierarchy"
+    },
+    {
+      "chart": 28,
+      "type": "Donut",
+      "decision": "Less expressive for Data Center parent and its two children"
+    },
+    {
+      "chart": 27,
+      "type": "Hexbin",
+      "decision": "Rejected: no geographical/dense coordinate data"
+    }
+  ],
+  "media": [
+    {
+      "type": "YouTube",
+      "id": "jw_o0xr8MWU",
+      "origin": "NVIDIA verified GTC 2026 keynote",
+      "context_only": true
+    },
+    {
+      "type": "X",
+      "url": "https://x.com/SKhynix/status/2033779101287489810",
+      "origin": "SK hynix official supply-chain post",
+      "context_only": true
+    },
+    {
+      "type": "YouTube",
+      "id": "wSp6AiNIrsY",
+      "origin": "NVIDIA GTC Taipei 2026 keynote",
+      "context_only": true
+    }
+  ],
+  "qa": {
+    "published_wp": true,
+    "featured_image_1200_630_verified": true,
+    "revenue_hierarchy_sum_verified": true,
+    "word_count_standard_range": true,
+    "prohibited_words_absent": true,
+    "contextual_internal_links": 4,
+    "seo_title_and_description_saved": true,
+    "source_dates_verified": true,
+    "donation_footer_present": true,
+    "saved_youtube_blocks": 2,
+    "rendered_youtube_iframes": 2,
+    "rendered_x_blockquote_and_script": true,
+    "chart_repository_svg_and_csv_verified": true,
+    "series_previous_article_backlink": true,
+    "desktop_mobile_browser_tested": false,
+    "public_svg_fetch_tested": false,
+    "real_youtube_playback_tested": false,
+    "actual_x_widget_run_tested": false,
+    "exact_uploaded_wordmark_reference_match_tested": false
+  },
+  "unresolved": [
+    "External public page/chart fetch blocked in available browser tool; use direct browser before marking visible chart/link QA passed",
+    "Actual YouTube playback and X script execution not independently verified",
+    "Desktop and mobile visual layout not independently verified",
+    "Uploaded reference watermark graphic not available for exact typography comparison",
+    "Revenue by Market Platform PDF screenshot could not be captured; textual table was confirmed in primary PDF and sources"
+  ]
+}
