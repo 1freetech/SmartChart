@@ -1,0 +1,92 @@
+{
+  "post_id": 33496,
+  "publication": "BitcoinVersus.tech",
+  "publish_status": "publish",
+  "url": "https://bitcoinversus.tech/2026/11/19/ifr-2025-electronics-automotive-603307-industrial-robots-donut-28/",
+  "chart_number": 28,
+  "chart_type": "Pie / donut",
+  "chart_selection": "4 exclusive industry groups from exact global installed robot total",
+  "chart_candidates": [
+    {
+      "type": "Pie / donut #28",
+      "reason": "Chosen: four additive industry groups as shares of one fixed global annual total"
+    },
+    {
+      "type": "Treemap #29",
+      "reason": "Not chosen: one-level hierarchy does not benefit from nested rectangles"
+    },
+    {
+      "type": "Hexbin plot #27",
+      "reason": "Not chosen: no coordinate point cloud"
+    }
+  ],
+  "topic": "Electrical/electronics retains lead over automotive for new industrial robots in 2025",
+  "source_publication_date": "2026-09-24",
+  "observations_year": 2025,
+  "source": "https://ifr.org/img/worldrobotics/Executive_Summary_WR_2026_-_Industrial_Robots.pdf",
+  "values": {
+    "total": 603307,
+    "electronics": 142235,
+    "automotive": 138429,
+    "metal_and_machinery": 108571,
+    "all_remaining_industries": 214072
+  },
+  "dataset_path": "atlas/2026/ifr-2025-industrial-robot-industries-donut-28.csv",
+  "chart_path": "atlas/2026/ifr-2025-industrial-robot-industries-donut-28.svg",
+  "categories": [
+    "robotics",
+    "semiconductors",
+    "Automotive",
+    "business",
+    "technology"
+  ],
+  "featured_media_id": 33488,
+  "cover_style": "Cinematic anime",
+  "cover_dimensions": "1200x630",
+  "authentic_media": [
+    {
+      "provider": "YouTube",
+      "id": "LxJzrm5mDH4",
+      "attribution": "IFR World Robotics 2026 top facts"
+    },
+    {
+      "provider": "X",
+      "url": "https://x.com/1x_tech/status/2075252899442204952",
+      "attribution": "1X official robotic-hand video, context only"
+    },
+    {
+      "provider": "YouTube",
+      "id": "pdNi9hTmYb0",
+      "attribution": "IFR President 2026 Automate market report, preliminary context only"
+    }
+  ],
+  "audit": {
+    "wordpress_status_publish": true,
+    "featured_cover_dimensions_verified": true,
+    "donut_and_source_csv_repository_verified": true,
+    "additive_total_verified": true,
+    "editorial_word_count": 640,
+    "prohibited_original_prose_words_absent": true,
+    "contextual_internal_links": 4,
+    "server_rendered_youtube_iframes": 2,
+    "server_rendered_x_blockquote_and_script": true,
+    "seo_meta_saved": true,
+    "donation_qr_footer_saved": true,
+    "previous_chart29_backlink_added": true,
+    "public_site_access_verified": false,
+    "public_chart_svg_loading_verified": false,
+    "actual_youtube_playback_verified": false,
+    "actual_x_widget_execution_verified": false,
+    "mobile_display_verified": false,
+    "uploaded_reference_logo_pixelmatch_verified": false,
+    "pdf_page_screenshot_verified": false
+  },
+  "unresolved": [
+    "Public WordPress permalink was unavailable to the independent web fetcher; WordPress API reports published",
+    "GitHub raw SVG URL was blocked by independent fetcher despite repository content being verified",
+    "Browser video playback and actual X widget runtime not tested",
+    "Responsive appearance on mobile not independently tested",
+    "Official wordmark reference was not accessible for pixel-exact comparison",
+    "IFR PDF screenshot attempt returned DisabledError; source text and primary press release were verified"
+  ]
+}
