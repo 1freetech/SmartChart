@@ -1,0 +1,57 @@
+{
+  "article_url": "https://bitcoinversus.tech/2026/11/19/steam-linux-3-95-percent-october-2026-hardware-survey-waffle-chart-30/",
+  "wp_post_id": 33441,
+  "wp_status": "publish",
+  "story": "Steam operating-system share October 2026",
+  "chart_number": 30,
+  "chart_type": "Waffle",
+  "category": [
+    "Gaming",
+    "Linux+",
+    "technology",
+    "Trending News"
+  ],
+  "source_date": "October 2026",
+  "verified_source": "https://store.steampowered.com/hwsurvey/",
+  "data": {
+    "september": {
+      "Windows": 95.03,
+      "Linux": 3.05,
+      "macOS": 1.92
+    },
+    "october": {
+      "Windows": 93.7,
+      "Linux": 3.95,
+      "macOS": 2.35
+    }
+  },
+  "chart_source": "atlas/2026/steam-linux-october-2026-100-cell-waffle-30.svg",
+  "csv_source": "atlas/2026/steam-linux-october-2026-100-cell-waffle-30.csv",
+  "cover_style": "Fine-art oil painting",
+  "featured_media_id": 33437,
+  "featured_dimensions": "1200x630",
+  "youtube_ids": [
+    "OmKrKTwtukE",
+    "AlWgZhMtlWo"
+  ],
+  "social_source": "https://twitter.com/valvesoftware/status/1988673021197140191",
+  "verification": {
+    "wordpress_saved": true,
+    "wordpress_published": true,
+    "featured_size_verified": true,
+    "youtube_iframe_html_count": 2,
+    "x_embed_blockquote_and_script": true,
+    "chart_svg_and_csv_committed": true,
+    "internal_links_verified": 4,
+    "qr_found_in_media_library": true,
+    "public_browser_playback_tested": false,
+    "mobile_layout_tested": false,
+    "external_public_page_fetched": false
+  },
+  "unresolved": [
+    "Public page fetch blocked by browsing environment",
+    "External playback and mobile layout not independently tested",
+    "User's exact uploaded reference secondary wordmark was not directly compared against image"
+  ],
+  "related_next_chart": 29
+}
