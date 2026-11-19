@@ -1,0 +1,4 @@
+period,parent,leaf,revenue_usd_millions,prior_q2_fy27_usd_millions,prior_q3_fy26_usd_millions,percent_of_total,primary_source
+"Q3 FY2027","Data Center","Hyperscale","60136","48710","35140","51.91","https://investor.nvidia.com/files/doc_financials/2027/Q327/Rev-by-Mkt-Qtrly-Trend-Q327.pdf"
+"Q3 FY2027","Data Center","AI Clouds, Industrial & Enterprise","47474","40313","16075","40.98","https://investor.nvidia.com/files/doc_financials/2027/Q327/Rev-by-Mkt-Qtrly-Trend-Q327.pdf"
+"Q3 FY2027","Edge Computing","Edge Computing","8234","7198","5791","7.11","https://investor.nvidia.com/files/doc_financials/2027/Q327/Rev-by-Mkt-Qtrly-Trend-Q327.pdf"
