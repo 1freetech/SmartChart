@@ -1,0 +1,8 @@
+# Source: Pony.ai Q3 2026 unaudited earnings released Nov 18 2026
+# URL: https://ir.pony.ai/news-releases/news-release-details/pony-ai-inc-reports-third-quarter-2026-financial-results-total
+# Each row compares the three months ended September 30 in both years, in US$ millions.
+# Robotaxi services include vehicle deliveries under joint deployment model, not only passenger fares.
+segment,q3_2025_usd_million,q3_2026_usd_million
+Robotaxi services,6.694,17.763
+Robotruck services,10.183,17.952
+Intelligent solutions,8.565,8.859
