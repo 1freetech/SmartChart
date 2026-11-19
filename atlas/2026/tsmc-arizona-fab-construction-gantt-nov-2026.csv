@@ -1,0 +1,11 @@
+lane,start,end,precision,status,milestone,source
+Fab 1: N4 manufacturing,2024-Q4,2026-11-18,quarter start; reporting cutoff,operating,High-volume manufacturing began Q4 2024,https://www.tsmc.com/static/abouttsmcaz/index.htm
+Fab 2: building completed,2025,,year only,completed milestone,Fab structure construction completed in 2025; month not specified,https://www.tsmc.com/static/abouttsmcaz/index.htm
+Fab 2: equipment installation,2026-10,,as-of October 15,ongoing,TSMC reported tool move-in and installation underway at October earnings call,https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-10/eba4fac72873bf546b669bd2b5d973df5c93215d/TSMC%203Q26%20Transcript.pdf
+Fab 2: N3 volume production,2027-Q3,2027-Q3,quarter target,forecast,N3 volume manufacturing target Q3 2027; not operating as of Nov 2026,https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-10/eba4fac72873bf546b669bd2b5d973df5c93215d/TSMC%203Q26%20Transcript.pdf
+Fab 3: construction activity,2025-04,2026-11-18,month start; reporting cutoff,ongoing,Groundbreaking April 2025; structure topped out May 5 2026; no construction completion date published,https://www.tsmc.com/static/abouttsmcaz/index.htm
+Fab 3: N2/A16 volume production,,by 2030-12,upper-bound company target,forecast,Target by end of decade; not a firm commissioning date,https://www.tsmc.com/static/abouttsmcaz/index.htm
+Fab 4: initial construction,early 2026,,half-year qualitative,ongoing,Initial construction started in early 2026; no date of completion,https://www.tsmc.com/static/abouttsmcaz/index.htm
+First advanced packaging fab,early 2026,,half-year qualitative,ongoing,Initial construction started early 2026; no commissioning date,https://www.tsmc.com/static/abouttsmcaz/index.htm
+Four additional advanced fabs,2026-07-16,,exact announcement date,announced,$100B additional commitment; individually dated construction schedules not disclosed,https://azcommerce-prod.azurewebsites.net/news-events/news/2026/7/tsmc-announcement/
+Industrial Water Reclamation Plant,2028,,calendar-year projection,forecast,"TSMC expects completion in 2028, subject to delivery",https://www.tsmc.com/static/abouttsmcaz/index.htm
