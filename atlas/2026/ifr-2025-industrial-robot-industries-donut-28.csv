@@ -1,0 +1,5 @@
+year,category,installed_industrial_robots,share_percent,derivation,source_url
+"2025","Electrical and electronics","142235","23.5759","As reported by IFR","https://ifr.org/img/worldrobotics/Executive_Summary_WR_2026_-_Industrial_Robots.pdf"
+"2025","Automotive","138429","22.9450","As reported by IFR","https://ifr.org/img/worldrobotics/Executive_Summary_WR_2026_-_Industrial_Robots.pdf"
+"2025","Metal and machinery","108571","17.9960","As reported by IFR","https://ifr.org/img/worldrobotics/Executive_Summary_WR_2026_-_Industrial_Robots.pdf"
+"2025","All other industries","214072","35.4831","Calculated by subtracting three named industry totals from global installed total","https://ifr.org/img/worldrobotics/Executive_Summary_WR_2026_-_Industrial_Robots.pdf"
