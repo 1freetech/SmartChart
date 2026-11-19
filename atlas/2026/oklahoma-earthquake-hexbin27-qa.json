@@ -1,0 +1,119 @@
+{
+  "article_id": 33513,
+  "article_title": "Oklahoma's Earthquake Hotspots Shrink 97%: 3,079 USGS Events Recharted",
+  "url": "https://bitcoinversus.tech/2026/11/19/oklahoma-earthquake-usgs-3079-events-hexbin-2013-2025/",
+  "status": "publish",
+  "chart_number": 27,
+  "chart_type": "Hexbin plot",
+  "style": "Modern colored-pencil original cover",
+  "topic": "Oklahoma-region earthquake spatial density, historical surge and later decline",
+  "date": "2026-11-19",
+  "source_publication": "2026-10-29",
+  "source_type": "Frozen USGS ComCat catalog republished by Live Atlas",
+  "source_license": "CC BY 4.0 with attribution to Live Atlas and USGS",
+  "source_url": "https://github.com/liveatlasearth/earthquake-catalogs/blob/main/data/oklahoma_m3_plus_since_2000.csv",
+  "source_records": 3079,
+  "region_bounds": {
+    "lat_min": 33.6,
+    "lat_max": 37.1,
+    "lon_min": -103.1,
+    "lon_max": -94.4,
+    "includes_border_states": true
+  },
+  "periods": [
+    {
+      "start": 2013,
+      "end": 2016,
+      "earthquakes": 2253,
+      "occupied_hexes": 35,
+      "max_per_hex": 340
+    },
+    {
+      "start": 2022,
+      "end": 2025,
+      "earthquakes": 61,
+      "occupied_hexes": 21,
+      "max_per_hex": 12
+    }
+  ],
+  "reduction_percentage": 97.29,
+  "chart_bin_radius_km_approx": 24,
+  "annual_peak_regional_2015": 915,
+  "annual_2025_regional": 6,
+  "chart_svg": "atlas/2026/oklahoma-region-m3-usgs-2013-16-vs-2022-25-hexbin-27.svg",
+  "binned_csv": "atlas/2026/oklahoma-region-m3-usgs-2013-16-vs-2022-25-hexbin-27.csv",
+  "full_source_events_csv": "atlas/2026/oklahoma-region-m3-usgs-2000-2026-source-events.csv",
+  "wordpress_chart_media_id": 33520,
+  "wordpress_photo_id": 33512,
+  "featured_media_id": 33511,
+  "featured_dimensions": [
+    1200,
+    630
+  ],
+  "candidate_charts": [
+    {
+      "number": 27,
+      "type": "Hexbin plot",
+      "decision": "selected, paired georeferenced epicenter coordinates, meaningful cluster counts"
+    },
+    {
+      "number": 26,
+      "type": "Heatmap",
+      "decision": "rejected, would require arbitrarily predefined cells and obscure hex spatial bins"
+    },
+    {
+      "number": 25,
+      "type": "Bubble scatter",
+      "decision": "rejected, 2253 points overplot heavily in surge period"
+    }
+  ],
+  "media": [
+    {
+      "type": "official archival photo",
+      "author": "Dolan Paris, USGS",
+      "source": "https://www.usgs.gov/media/images/damage-cushing-oklahoma-magnitude-50-earthquake-2016",
+      "wp_media_id": 33512
+    },
+    {
+      "type": "YouTube",
+      "video_id": "v-79qW30Z2k",
+      "publisher": "IRIS Earthquake Science, USGS scientist lecture"
+    },
+    {
+      "type": "YouTube",
+      "video_id": "B4rAaqbjrRE",
+      "publisher": "Geological Society of Minnesota, Oklahoma State Seismologist talk"
+    }
+  ],
+  "validation": {
+    "word_count": 698,
+    "data_total_events": 3079,
+    "period_counts_reconciled": true,
+    "identical_bin_size_color_bins": true,
+    "source_license_retained": true,
+    "editorial_prohibited_words_absent": true,
+    "internal_links_verified": 4,
+    "seo_meta_saved": true,
+    "donation_qr_included": true,
+    "featured_image_original_1200_630": true,
+    "chart_saved_as_local_wordpress_png": true,
+    "chart_svg_and_csv_archived": true,
+    "youtube_native_gutenberg_blocks": 2,
+    "youtube_server_iframes": 2,
+    "photo_official_attributed": true,
+    "previous_chart_28_backlink": true,
+    "published_wp_confirmed": true,
+    "verified_x_embed": false,
+    "public_url_browser_verified": false,
+    "external_youtube_playback_verified": false,
+    "mobile_layout_verified": false,
+    "wordmark_reference_exactness_verified": false
+  },
+  "unresolved": [
+    "No verified on-topic original-source X/social post found; no X block added rather than inventing one.",
+    "Independent public WordPress URL fetch returned inaccessible; WordPress API confirms publication.",
+    "Public image URL fetch blocked; chart is uploaded locally to WordPress and referenced by native image block.",
+    "Actual YouTube playback and responsive/mobile display not independently tested.",
+    "Exact reference watermark typography comparison not performed."
+  ]
+}
