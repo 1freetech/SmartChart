@@ -1,0 +1,5 @@
+policy_epoch,effective_date,maximum_standard_disclosure_days,status,interpretation
+"90 plus 30","2021 (specific date not charted)",120,Historical,"90 days for remediation plus up to 30 additional days for patch rollout"
+"Full 90",2026-11-13,90,Effective,"Public disclosure at 90 days irrespective of patch status"
+"Full 60",2027-02-02,60,Scheduled,"Planned public disclosure at 60 days"
+"Full 30",2028-01-03,30,Scheduled,"Planned public disclosure at 30 days"
