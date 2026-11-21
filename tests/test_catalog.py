@@ -29,9 +29,21 @@ class CatalogTests(unittest.TestCase):
                 self.assertEqual(ElementTree.parse(artwork).getroot().tag.rsplit("}", 1)[-1], "svg")
 
     def test_no_non_python_application_code(self):
+        # Published Gutenberg snippets are archival article exports, not an
+        # executable browser frontend. Keep checking every other location.
+        def archived_gutenberg_export(path: Path) -> bool:
+            relative = path.relative_to(ROOT)
+            return (
+                len(relative.parts) == 3
+                and relative.parts[:2] == ("atlas", "2026")
+                and relative.name.endswith("-published-gutenberg.html")
+            )
+
         left = [str(p.relative_to(ROOT)) for p in ROOT.rglob("*")
-                if p.is_file() and p.suffix.lower() in NON_PYTHON_PROGRAMS]
-        self.assertEqual(left, [], "Retired web/JavaScript code must not return")
+                if p.is_file()
+                and p.suffix.lower() in NON_PYTHON_PROGRAMS
+                and not archived_gutenberg_export(p)]
+        self.assertEqual(left, [], "Executable web/JavaScript code must not return")
 
     def test_python_desktop_entrypoint_exists(self):
         self.assertTrue((ROOT / "desktop/smartchart.py").is_file())
