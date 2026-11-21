@@ -1,0 +1,6 @@
+System,HPL Rmax (EFLOP/s),TOP500 rank,Data status,As-of date,Source URL
+LineShine,2.1984,1,measured,2026-11-16,https://www.top500.org/lists/top500/list/2026/11/
+El Capitan,1.809,2,measured,2026-11-16,https://www.top500.org/lists/top500/list/2026/11/
+Frontier,1.353,3,measured,2026-11-16,https://www.top500.org/lists/top500/list/2026/11/
+Aurora,1.012,4,measured,2026-11-16,https://www.top500.org/lists/top500/list/2026/11/
+JUPITER,1.000,5,measured,2026-11-16,https://www.top500.org/lists/top500/list/2026/11/
